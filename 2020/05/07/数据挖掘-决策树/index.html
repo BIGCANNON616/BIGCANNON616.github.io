@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数据挖掘-决策树任务一一、简介决策树摘自 scikitlearn中文文档  决策树（DT）是一种用于分类和回归的无参监督学习方法。其目的是创建一种模型从数据特征中学习简单的决策规则来预测一个目标变量的值。  建立决策树主要有三种算法：  ID3 C4.5 CART(Classification And Regression Tree)  ID3（Iterative Dichotomiser 3）由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘大作业2记录">
+<meta property="og:url" content="http://example.com/2020/05/07/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
+<meta property="og:site_name" content="Mr.sun&#39;s notebook">
+<meta property="og:description" content="数据挖掘-决策树任务一一、简介决策树摘自 scikitlearn中文文档  决策树（DT）是一种用于分类和回归的无参监督学习方法。其目的是创建一种模型从数据特征中学习简单的决策规则来预测一个目标变量的值。  建立决策树主要有三种算法：  ID3 C4.5 CART(Classification And Regression Tree)  ID3（Iterative Dichotomiser 3）由">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/08/Yu3X9g.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/08/YKVZsU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/08/YMPPhV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/09/YMZ9r8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/08/wlJc0H.png">
+<meta property="article:published_time" content="2020-05-07T09:11:34.000Z">
+<meta property="article:modified_time" content="2020-09-16T14:46:28.000Z">
+<meta property="article:author" content="孙云哲">
+<meta property="article:tag" content="数据挖掘">
+<meta property="article:tag" content="决策树">
+<meta property="article:tag" content="K-means">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/05/08/Yu3X9g.png">
+
+<link rel="canonical" href="http://example.com/2020/05/07/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E5%86%B3%E7%AD%96%E6%A0%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数据挖掘大作业2记录 | Mr.sun's notebook</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mr.sun's notebook</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/07/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E5%86%B3%E7%AD%96%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据挖掘大作业2记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-07 17:11:34" itemprop="dateCreated datePublished" datetime="2020-05-07T17:11:34+08:00">2020-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 22:46:28" itemprop="dateModified" datetime="2020-09-16T22:46:28+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据挖掘-决策树"><a href="#数据挖掘-决策树" class="headerlink" title="数据挖掘-决策树"></a>数据挖掘-决策树</h1><h2 id="任务一"><a href="#任务一" class="headerlink" title="任务一"></a>任务一</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><h4 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h4><p>摘自 <a target="_blank" rel="noopener" href="http://scikitlearn.com.cn/0.21.3/11/">scikitlearn中文文档</a></p>
+<p> <strong>决策树（DT）</strong>是一种用于分类和回归的无参监督学习方法。其目的是创建一种模型从数据特征中学习简单的决策规则来预测一个目标变量的值。 </p>
+<p>建立决策树主要有三种算法：</p>
+<ul>
+<li>ID3</li>
+<li>C4.5</li>
+<li>CART(Classification And Regression Tree)</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ID3_algorithm">ID3</a>（Iterative Dichotomiser 3）由 Ross Quinlan 在1986年提出。该算法创建一个多路树，找到每个节点（即以贪心的方式）分类特征，这将产生分类目标的最大信息增益。决策树发展到其最大尺寸，然后通常利用剪枝来提高树对未知数据的泛化能力。</p>
+<p>C4.5 是 ID3 的后继者，并且通过动态定义将连续属性值分割成一组离散间隔的离散属性（基于数字变量），消除了特征必须被明确分类的限制。C4.5 将训练的树（即，ID3算法的输出）转换成 if-then 规则的集合。然后评估每个规则的这些准确性，以确定应用它们的顺序。如果规则的准确性没有改变，则需要决策树的树枝来解决。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Predictive_analytics#Classification_and_regression_trees_.28CART.29">CART</a>（Classification and Regression Trees （分类和回归树））与 C4.5 非常相似，但它不同之处在于它支持数值目标变量（回归），并且不计算规则集。CART 使用在每个节点产生最大信息增益的特征和阈值来构造二叉树。</p>
+<p><strong>本次作业使用CART算法</strong></p>
+<p>决策树构建过程参考视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1T7411b7DG/">https://www.bilibili.com/video/BV1T7411b7DG/</a></p>
+<h4 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h4><p>它的基本思想就是将原始数据（dataset）进行分组，一部分做为训练集来训练模型，另一部分做为测试集来评价模型。交叉验证用于评估模型的预测性能，尤其是训练好的模型在新数据上的表现，可以在一定程度上减小过拟合。  还可以从有限的数据中获取尽可能多的有效信息。</p>
+<p>作业中采用<strong>10折交叉验证</strong>, 用DecisionTreeClassifier的参数剪枝，连续属性分裂值确定</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40541aa440c7">https://www.jianshu.com/p/40541aa440c7</a></p>
+<p>​          <a target="_blank" rel="noopener" href="https://www.jb51.net/article/181619.htm">https://www.jb51.net/article/181619.htm</a></p>
+<p>​         <a target="_blank" rel="noopener" href="https://blog.csdn.net/wyp8268526/article/details/90273682">https://blog.csdn.net/wyp8268526/article/details/90273682</a> </p>
+<p>​         <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42969619/article/details/99302615">https://blog.csdn.net/weixin_42969619/article/details/99302615</a></p>
+<p>​         <a target="_blank" rel="noopener" href="https://blog.csdn.net/y0929/article/details/82686177">https://blog.csdn.net/y0929/article/details/82686177</a></p>
+<p>​         <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1m741187N6/">https://www.bilibili.com/video/BV1m741187N6/</a></p>
+<h3 id="二、软件环境准备"><a href="#二、软件环境准备" class="headerlink" title="二、软件环境准备"></a>二、软件环境准备</h3><p>Anaconda3</p>
+<p>在Anaconda中安装sklearn包</p>
+<p><code>conda install -c conda-forge sklearn</code></p>
+<p>Graphviz(需配置环境变量)</p>
+<p>鸢尾花数据集(sklearn自带)</p>
+<p>数据集介绍</p>
+<table>
+<thead>
+<tr>
+<th>数据量</th>
+<th>150</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性数量</td>
+<td>4</td>
+</tr>
+<tr>
+<td>属性特征</td>
+<td>实数（连续属性）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>萼片长度、萼片宽度、花瓣长度、花瓣宽度</td>
+</tr>
+<tr>
+<td>类别数</td>
+<td>3</td>
+</tr>
+<tr>
+<td>类别</td>
+<td>Iris  Setosa、Iris  Versicolor、Iris Virginica</td>
+</tr>
+</tbody></table>
+<p>​        Iris 鸢尾花数据集是一个经典数据集，在统计学习和机器学习领域都经常被用作示例。数据集内包含 3 类共 150 条记录，每类各 50 个数据，每条记录都有 4 项特征：花萼长度、花萼宽度、花瓣长度、花瓣宽度，可以通过这4个特征预测鸢尾花卉属于（iris-setosa, iris-versicolour, iris-virginica）中的哪一品种。  </p>
+<h3 id="三、实验步骤"><a href="#三、实验步骤" class="headerlink" title="三、实验步骤"></a>三、实验步骤</h3><ol>
+<li><p>打开anconda命令行进入合适位置</p>
+</li>
+<li><p>输入jupyter notebook进入编辑环境，新建python3文件</p>
+</li>
+<li><p><strong>读入数据</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具库</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#读入数据集</span></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;iris.data&quot;</span>, sep=<span class="string">&quot;,&quot;</span>, header=<span class="literal">None</span>)</span><br><span class="line">df.columns = [<span class="string">&#x27;萼片长度&#x27;</span>, <span class="string">&#x27;萼片宽度&#x27;</span>, <span class="string">&#x27;花瓣长度&#x27;</span>, <span class="string">&#x27;花瓣宽度&#x27;</span>, <span class="string">&#x27;实际类别&#x27;</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right">萼片长度</th>
+<th align="right">萼片宽度</th>
+<th align="right">花瓣长度</th>
+<th align="right">花瓣宽度</th>
+<th align="right">实际类别</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td>…</td>
+</tr>
+<tr>
+<td align="right">145</td>
+<td align="right">6.7</td>
+<td align="right">3.0</td>
+<td align="right">5.2</td>
+<td align="right">2.3</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">146</td>
+<td align="right">6.3</td>
+<td align="right">2.5</td>
+<td align="right">5.0</td>
+<td align="right">1.9</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">147</td>
+<td align="right">6.5</td>
+<td align="right">3.0</td>
+<td align="right">5.2</td>
+<td align="right">2.0</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">148</td>
+<td align="right">6.2</td>
+<td align="right">3.4</td>
+<td align="right">5.4</td>
+<td align="right">2.3</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">149</td>
+<td align="right">5.9</td>
+<td align="right">3.0</td>
+<td align="right">5.1</td>
+<td align="right">1.8</td>
+<td>Iris-virginica</td>
+</tr>
+</tbody></table>
+<p>150 rows × 5 columns</p>
+<p>也可以用sklearn自带的iris数据集,可以看到更多相关信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具库</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="comment">#读入数据集</span></span><br><span class="line">iris = load_iris() <span class="comment"># 加载sklearn自带的数据集</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>预览数据集</strong></p>
+<p>iris是一个字典，包含了数据、标签、标签名、数据描述等信息。可以通过键来索引对应的值,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.data.shape</span><br></pre></td></tr></table></figure>
+
+<p>(150, 4)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.feature_names</span><br></pre></td></tr></table></figure>
+
+<p>[‘sepal length (cm)’,<br> ‘sepal width (cm)’,<br> ‘petal length (cm)’,<br> ‘petal width (cm)’]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.target</span><br></pre></td></tr></table></figure>
+
+<p>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,</p>
+<pre><code>   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+   0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+   2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+   2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.target_names</span><br></pre></td></tr></table></figure>
+
+<p>array([‘setosa’, ‘versicolor’, ‘virginica’], dtype=’&lt;U10’)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.filename</span><br></pre></td></tr></table></figure>
+
+<p>‘C:\ProgramData\Anaconda3\lib\site-packages\sklearn\datasets\data\iris.csv’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 前50个样本的散点图</span></span><br><span class="line">plt.scatter(X[:<span class="number">50</span>, <span class="number">0</span>], X[:<span class="number">50</span>, <span class="number">1</span>],color=<span class="string">&#x27;red&#x27;</span>, marker=<span class="string">&#x27;o&#x27;</span>, label=<span class="string">&#x27;setosa&#x27;</span>)</span><br><span class="line"><span class="comment"># 中间50个样本的散点图</span></span><br><span class="line">plt.scatter(X[<span class="number">50</span>:<span class="number">100</span>, <span class="number">0</span>], X[<span class="number">50</span>:<span class="number">100</span>, <span class="number">1</span>],color=<span class="string">&#x27;blue&#x27;</span>, marker=<span class="string">&#x27;x&#x27;</span>, label=<span class="string">&#x27;versicolor&#x27;</span>)</span><br><span class="line"><span class="comment"># 后50个样本的散点图</span></span><br><span class="line">plt.scatter(X[<span class="number">100</span>:, <span class="number">0</span>], X[<span class="number">100</span>:, <span class="number">1</span>],color=<span class="string">&#x27;green&#x27;</span>, marker=<span class="string">&#x27;+&#x27;</span>, label=<span class="string">&#x27;Virginica&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;petal length&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;sepal length&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">2</span>) <span class="comment"># 说明放在左上角</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/08/Yu3X9g.png" alt="初始散点图"></p>
+</li>
+<li><p><strong>数据预处理</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据采用iris.data</span></span><br><span class="line"><span class="comment"># 打乱样本顺序</span></span><br><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line">df = shuffle(df)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 划分特征列和类别列</span></span><br><span class="line">X = df[[<span class="string">&#x27;萼片长度&#x27;</span>,<span class="string">&#x27;萼片宽度&#x27;</span>,<span class="string">&#x27;花瓣长度&#x27;</span>,<span class="string">&#x27;花瓣宽度&#x27;</span>]]</span><br><span class="line">y = df[<span class="string">&#x27;实际类别&#x27;</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>划分数据集</strong></p>
+<p>按照训练集 : 测试集 = 2:1的比例划分数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 按照训练集 : 测试集 = 2:1的比例划分数据集</span></span><br><span class="line">X_test = X[:<span class="number">50</span>]</span><br><span class="line">X_train = X[<span class="number">50</span>:]</span><br><span class="line">y_test = y[:<span class="number">50</span>]</span><br><span class="line">y_train = y[<span class="number">50</span>:]</span><br><span class="line">df_test = df[:<span class="number">50</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看划分的大小是否正确</span></span><br><span class="line">X_train.shape, y_train.shape</span><br></pre></td></tr></table></figure>
+
+<p>((100, 4), (100,))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_test.shape, y_test.shape</span><br></pre></td></tr></table></figure>
+
+<p>((50, 4), (50,))</p>
+</li>
+<li><p><strong>训练模型</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练模型 clf: classifier分类器</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line">clf = tree.DecisionTreeClassifier(max_depth = <span class="number">4</span>)</span><br><span class="line"><span class="comment"># 查看模型信息，包含各种剪枝参数，其中criterion=&#x27;gini&#x27;属性表示默认使用CART算法，</span></span><br><span class="line"><span class="comment"># splitter特征划分标准，默认值为‘best’。在特征的所有划分点中找出最优的划分点，</span></span><br><span class="line"><span class="comment"># 详细参数参考https://blog.csdn.net/y0929/article/details/82686177</span></span><br><span class="line">clf = clf.fit(X_train, y_train)</span><br><span class="line">clf</span><br></pre></td></tr></table></figure>
+
+<p>DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, <strong>criterion=’gini’,</strong></p>
+<pre><code>                   max_depth=4, max_features=None, max_leaf_nodes=None,
+                   min_impurity_decrease=0.0, min_impurity_split=None,
+                   min_samples_leaf=1, min_samples_split=2,
+                   min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                   random_state=None, **splitter=&#39;best&#39;**)
+</code></pre>
+</li>
+<li><p><strong>画出决策树</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画出决策树</span></span><br><span class="line">feature_names = [<span class="string">&#x27;sepal length (cm)&#x27;</span>,<span class="string">&#x27;sepal width (cm)&#x27;</span>,<span class="string">&#x27;petal length (cm)&#x27;</span>,<span class="string">&#x27;petal width (cm)&#x27;</span>]</span><br><span class="line">target_names = [<span class="string">&#x27;setosa&#x27;</span>, <span class="string">&#x27;versicolor&#x27;</span>, <span class="string">&#x27;virginica&#x27;</span>]</span><br><span class="line"><span class="keyword">import</span> pydotplus</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line">dot_data = tree.export_graphviz(clf,</span><br><span class="line">                               out_file = <span class="literal">None</span>,</span><br><span class="line">                               feature_names = feature_names,</span><br><span class="line">                               class_names = target_names,</span><br><span class="line">                               filled = <span class="literal">True</span>,</span><br><span class="line">                               rounded = <span class="literal">True</span></span><br><span class="line">                               )</span><br><span class="line">graph = pydotplus.graph_from_dot_data(dot_data)</span><br><span class="line">display(Image(graph.create_png()))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/08/YKVZsU.png" alt="x_train"></p>
+</li>
+<li><p><strong>在测试集检验决策树的分类效果(准确率)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf.score(X_test, y_test)</span><br></pre></td></tr></table></figure>
+
+<p>0.96</p>
+</li>
+<li><p><strong>交叉验证</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入数据采用iris.data文件，预处理、划分数据集同上</span></span><br><span class="line"><span class="comment"># 通过循环不断的改变参数，再利用交叉验证来评估不同参数模型的能力</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line">k_range = <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">7</span>)</span><br><span class="line">cv_scores = []</span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> k_range:</span><br><span class="line">    clf = tree.DecisionTreeClassifier(max_depth = n)</span><br><span class="line">    scores = cross_val_score(clf, X_train, y_train, cv=<span class="number">10</span>)</span><br><span class="line">    cv_scores.append(scores.mean())</span><br><span class="line">plt.plot(k_range,cv_scores)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;n&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Accuracy&#x27;</span>)  <span class="comment">#通过图像选择最好的参数</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/08/YMPPhV.png" alt="max_depth"></p>
+<p>由图像可以看出n=3时性能最好，确定max_depth = 3</p>
+<p>**注: **这里由于分组的随机性并不是确定值，要根据每次的图像决定参数</p>
+<p>重新训练模型&amp;画图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新训练模型&amp;画图</span></span><br><span class="line">clf = tree.DecisionTreeClassifier(max_depth = <span class="number">3</span>)</span><br><span class="line">clf = clf.fit(X_train, y_train) <span class="comment"># 训练模型</span></span><br><span class="line"></span><br><span class="line">dot_data = tree.export_graphviz(clf,</span><br><span class="line">                               out_file = <span class="literal">None</span>,</span><br><span class="line">                               feature_names = feature_names,</span><br><span class="line">                               class_names = target_names,</span><br><span class="line">                               filled = <span class="literal">True</span>,</span><br><span class="line">                               rounded = <span class="literal">True</span></span><br><span class="line">                               )</span><br><span class="line">graph = pydotplus.graph_from_dot_data(dot_data)</span><br><span class="line">display(Image(graph.create_png()))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/09/YMZ9r8.png" alt="最终决策树"></p>
+<p><strong>在测试集检验决策树的分类效果</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在测试集检验决策树的分类效果(准确率)</span></span><br><span class="line">clf.score(X_test,y_test)</span><br></pre></td></tr></table></figure>
+
+<p>0.98</p>
+<p>结果要好一些</p>
+</li>
+<li><p>保存测试集结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = clf.predict(X_test)</span><br><span class="line"><span class="comment"># 将测试结果转成dataframe</span></span><br><span class="line">result = pd.DataFrame(&#123;<span class="string">&#x27;分类结果&#x27;</span>:result&#125;)</span><br><span class="line">result</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th>分类结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">44</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">45</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">46</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">47</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">48</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td>Iris-setosa</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将测试结果与原始数据合并</span></span><br><span class="line">df_test.reset_index(drop=<span class="literal">True</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">df_test</span><br><span class="line">df_test[<span class="string">&#x27;分类结果&#x27;</span>] = result[<span class="string">&#x27;分类结果&#x27;</span>]</span><br><span class="line">df_test</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right">萼片长度</th>
+<th align="right">萼片宽度</th>
+<th align="right">花瓣长度</th>
+<th align="right">花瓣宽度</th>
+<th align="right">实际类别</th>
+<th align="right">分类结果</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">7.9</td>
+<td align="right">3.8</td>
+<td align="right">6.4</td>
+<td align="right">2.0</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">5.5</td>
+<td align="right">2.4</td>
+<td align="right">3.8</td>
+<td align="right">1.1</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">5.9</td>
+<td align="right">3.2</td>
+<td align="right">4.8</td>
+<td align="right">1.8</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">5.0</td>
+<td align="right">3.5</td>
+<td align="right">1.6</td>
+<td align="right">0.6</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="right">6.5</td>
+<td align="right">3.0</td>
+<td align="right">5.5</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="right">5.7</td>
+<td align="right">2.8</td>
+<td align="right">4.1</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td align="right">4.3</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="right">0.1</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="right">4.6</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="right">5.7</td>
+<td align="right">4.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="right">5.8</td>
+<td align="right">2.7</td>
+<td align="right">5.1</td>
+<td align="right">1.9</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td align="right">5.8</td>
+<td align="right">2.8</td>
+<td align="right">5.1</td>
+<td align="right">2.4</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td align="right">5.6</td>
+<td align="right">2.8</td>
+<td align="right">4.9</td>
+<td align="right">2.0</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td align="right">6.4</td>
+<td align="right">2.8</td>
+<td align="right">5.6</td>
+<td align="right">2.1</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td align="right">6.1</td>
+<td align="right">3.0</td>
+<td align="right">4.9</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td align="right">6.3</td>
+<td align="right">2.3</td>
+<td align="right">4.4</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td align="right">7.3</td>
+<td align="right">2.9</td>
+<td align="right">6.3</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td align="right">6.2</td>
+<td align="right">2.2</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td align="right">5.9</td>
+<td align="right">3.0</td>
+<td align="right">5.1</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td align="right">5.6</td>
+<td align="right">3.0</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td align="right">5.6</td>
+<td align="right">2.5</td>
+<td align="right">3.9</td>
+<td align="right">1.1</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td align="right">6.3</td>
+<td align="right">3.4</td>
+<td align="right">5.6</td>
+<td align="right">2.4</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td align="right">7.2</td>
+<td align="right">3.0</td>
+<td align="right">5.8</td>
+<td align="right">1.6</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td align="right">5.0</td>
+<td align="right">2.3</td>
+<td align="right">3.3</td>
+<td align="right">1.0</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.9</td>
+<td align="right">0.4</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td align="right">7.7</td>
+<td align="right">3.8</td>
+<td align="right">6.7</td>
+<td align="right">2.2</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td align="right">5.1</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td align="right">6.7</td>
+<td align="right">3.0</td>
+<td align="right">5.2</td>
+<td align="right">2.3</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td align="right">6.1</td>
+<td align="right">2.8</td>
+<td align="right">4.0</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td align="right">6.6</td>
+<td align="right">2.9</td>
+<td align="right">4.6</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td align="right">6.7</td>
+<td align="right">3.3</td>
+<td align="right">5.7</td>
+<td align="right">2.1</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td align="right">5.6</td>
+<td align="right">2.9</td>
+<td align="right">3.6</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td align="right">6.4</td>
+<td align="right">2.8</td>
+<td align="right">5.6</td>
+<td align="right">2.2</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td align="right">6.9</td>
+<td align="right">3.1</td>
+<td align="right">5.4</td>
+<td align="right">2.1</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td align="right">5.0</td>
+<td align="right">3.2</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td align="right">6.7</td>
+<td align="right">3.1</td>
+<td align="right">5.6</td>
+<td align="right">2.4</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td align="right">6.8</td>
+<td align="right">2.8</td>
+<td align="right">4.8</td>
+<td align="right">1.4</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td align="right">7.2</td>
+<td align="right">3.6</td>
+<td align="right">6.1</td>
+<td align="right">2.5</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td align="right">6.4</td>
+<td align="right">2.7</td>
+<td align="right">5.3</td>
+<td align="right">1.9</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td align="right">6.2</td>
+<td align="right">3.4</td>
+<td align="right">5.4</td>
+<td align="right">2.3</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td align="right">5.1</td>
+<td align="right">3.3</td>
+<td align="right">1.7</td>
+<td align="right">0.5</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">44</td>
+<td align="right">5.2</td>
+<td align="right">3.5</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">45</td>
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">46</td>
+<td align="right">7.0</td>
+<td align="right">3.2</td>
+<td align="right">4.7</td>
+<td align="right">1.4</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">47</td>
+<td align="right">5.8</td>
+<td align="right">2.7</td>
+<td align="right">5.1</td>
+<td align="right">1.9</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">48</td>
+<td align="right">6.0</td>
+<td align="right">2.9</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存测试集结果</span></span><br><span class="line">df_test.to_csv(<span class="string">&#x27;df_test_result.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="四、实验总结"><a href="#四、实验总结" class="headerlink" title="四、实验总结"></a>四、实验总结</h3><p>​        任务一学习并使用了决策树分类，通过实际操作，我知道了利用sklearn包实现决策树的CART算法，还有交叉验证可以用来选择最好的剪枝参数，也可以对模型的结果进行验证评估。</p>
+<h2 id="任务二"><a href="#任务二" class="headerlink" title="任务二"></a>任务二</h2><h3 id="一、简介-1"><a href="#一、简介-1" class="headerlink" title="一、简介"></a>一、简介</h3><p><strong>k-means（k-均值）算法</strong></p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ustbbsy/article/details/80960652">https://blog.csdn.net/ustbbsy/article/details/80960652</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/github_39261590/article/details/76910689">https://blog.csdn.net/github_39261590/article/details/76910689</a></p>
+<p><strong>算法描述</strong></p>
+<p>　K-means算法是很典型的基于距离的聚类算法，采用距离 作为相似性的评价指标，即认为两个对象的距离越近，其相似度就越大。该算法认为簇是由距离靠近的对象组成的，因此把得到紧凑且独立的簇作为最终目标。</p>
+<p>　　k-means算法特点在于：同一聚类的簇内的对象相似度较高；而不同聚类的簇内的对象相似度较小。</p>
+<p><strong>算法优缺点</strong></p>
+<p>优点：</p>
+<p>1.算法快速、简单;</p>
+<p>2.对大数据集有较高的效率并且是可伸缩性的;</p>
+<p>3.时间复杂度近于线性，而且适合挖掘大规模数据集。K-Means聚类算法的时间复杂度是O(n×k×t) ,其中n代表数据集中对象的数量，t代表着算法迭代的次数，k代表着簇的数目</p>
+<p>缺点：</p>
+<p>1．在 K-means 算法中 K 是事先给定的，这个 K 值的选定是非常难以估计的。很多时候，事先并不知道给定的数据集应该分成多少个类别才最合适。</p>
+<p>2．在 K-means 算法中，首先需要根据初始聚类中心来确定一个初始划分，然后对初始划分进行优化。这个初始聚类中心的选择对聚类结果有较大的影响，一旦初始值选择的不好，可能无法得到有效的聚类结果，这也成为 K-means算法的一个主要问题。</p>
+<p>3．从 K-means 算法框架可以看出，该算法需要不断地进行样本分类调整，不断地计算调整后的新的聚类中心，因此当数据量非常大时，算法的时间开销是非常大的。所以需要对算法的时间复杂度进行分析、改进，提高算法应用范围。</p>
+<p><strong>k-means++算法（k-means算法初值选取优化方法）</strong></p>
+<p>k-means++算法选择初始seeds的基本思想就是：初始的聚类中心之间的相互距离要尽可能的远。</p>
+<p>算法步骤：</p>
+<p>（1）从输入的数据点集合中随机选择一个点作为第一个聚类中心</p>
+<p>（2）对于数据集中的每一个点x，计算它与最近聚类中心(指已选择的聚类中心)的距离D(x)</p>
+<p>（3）选择一个新的数据点作为新的聚类中心，选择的原则是：D(x)较大的点，被选取作为聚类中心的概率较大</p>
+<p>（4）重复2和3直到k个聚类中心被选出来</p>
+<p>（5）利用这k个初始的聚类中心来运行标准的k-means算法</p>
+<h3 id="二、软件环境准备-1"><a href="#二、软件环境准备-1" class="headerlink" title="二、软件环境准备"></a>二、软件环境准备</h3><p>Anaconda3</p>
+<p>sklearn包</p>
+<p>云图数据集cloud.data</p>
+<p>数据集介绍</p>
+<table>
+<thead>
+<tr>
+<th>数据量</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性数量</td>
+<td>10</td>
+</tr>
+<tr>
+<td>属性特征</td>
+<td>实数（连续属性）</td>
+</tr>
+</tbody></table>
+<p>谷歌机翻如下</p>
+<p>数据集信息：</p>
+<p>我们建议分析的数据集由1024个向量组成，每个向量包含10个参数。您可以将其视为1024 * 10矩阵。要产生这些矢量，请按以下步骤操作：</p>
+<p>1.我们从两张512 * 512的AVHRR图像开始（可见图像为1，红外图像为1） 2.每个图像都被划分为超像素16 * 16，每个超像素像素，我们计算出一组参数：</p>
+<p>（a）可见：均值，最大值，最小值，均值分布，对比度，熵，第二角动量</p>
+<p>（b）IR：均值，最大值，最小值</p>
+<p>我们选择用来形成向量的10个参数集是各种约束之间的折衷。实际上，我们仍在为数据向量选择参数。我发送给您的数据集尚未规范化。我们的分类方案要求对数据集进行规范化，但对于您的分类可能并非如此。为了标准化数据，我们计算整个数据集上每个参数的均值和标准差，然后计算每个向量的每个参数的均值和标准差：</p>
+<p>范数值=（非标准值-平均值）/ SD，其中</p>
+<p>平均值=数据集中该特定参数的平均值</p>
+<p>SD =标准偏差…..</p>
+<h3 id="三、实验步骤-1"><a href="#三、实验步骤-1" class="headerlink" title="三、实验步骤"></a>三、实验步骤</h3><p><strong>具体运行结果见附件Cloud.ipynb</strong></p>
+<p><strong>1. 作业只需关注“CLOUD COVER DB #1”</strong>，所以对cloud.data进行处理删掉前面的说明和第二部分数据。</p>
+<p><strong>2. 数据以空格为分隔，要先处理成csv格式</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 逐行读入数据，将空格转成逗号，保存为csv格式</span></span><br><span class="line">ls = <span class="built_in">open</span>(<span class="string">&quot;cloud.data&quot;</span>).readlines()</span><br><span class="line">newTxt = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> ls:</span><br><span class="line">    newTxt = newTxt + <span class="string">&quot;,&quot;</span>.join(line.split()) + <span class="string">&quot;\n&quot;</span></span><br><span class="line">fo = <span class="built_in">open</span>(<span class="string">&quot;cloud.csv&quot;</span>, <span class="string">&quot;x&quot;</span>)</span><br><span class="line">fo.write(newTxt)</span><br><span class="line">fo.close()</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.</strong>  <strong>读入数据</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具库</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#读入数据集</span></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;cloud.csv&quot;</span>, sep=<span class="string">&quot;,&quot;</span>, header=<span class="literal">None</span>)</span><br><span class="line">df.columns = [<span class="string">&#x27;mean&#x27;</span>,<span class="string">&#x27;max&#x27;</span>,<span class="string">&#x27;min&#x27;</span>,<span class="string">&#x27;mean distibution’,’contrast&#x27;</span>,<span class="string">&#x27;entropy&#x27;</span>,<span class="string">&#x27;second angular momentum&#x27;</span>,<span class="string">&#x27;mean’&#x27;</span>,<span class="string">&#x27;max’&#x27;</span>,<span class="string">&#x27;min1’]</span></span><br><span class="line"><span class="string">df.head()</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>mean</strong></th>
+<th><strong>max</strong></th>
+<th><strong>min</strong></th>
+<th><strong>mean distibution</strong></th>
+<th><strong>contrast</strong></th>
+<th><strong>entropy</strong></th>
+<th><strong>second angular momentum</strong></th>
+<th><strong>mean</strong></th>
+<th><strong>max</strong></th>
+<th><strong>min</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>3.0</td>
+<td>140.0</td>
+<td>43.5000</td>
+<td>0.0833</td>
+<td>862.8417</td>
+<td>0.0254</td>
+<td>3.8890</td>
+<td>163.0</td>
+<td>240.0</td>
+<td>213.3555</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3.0</td>
+<td>135.0</td>
+<td>41.9063</td>
+<td>0.0790</td>
+<td>690.3291</td>
+<td>0.0259</td>
+<td>3.8340</td>
+<td>167.0</td>
+<td>239.0</td>
+<td>213.7188</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2.0</td>
+<td>126.0</td>
+<td>21.0586</td>
+<td>0.0406</td>
+<td>308.3583</td>
+<td>0.0684</td>
+<td>3.1702</td>
+<td>174.0</td>
+<td>240.0</td>
+<td>227.5859</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4.0</td>
+<td>197.0</td>
+<td>77.4805</td>
+<td>0.0890</td>
+<td>874.4709</td>
+<td>0.0243</td>
+<td>3.9442</td>
+<td>155.0</td>
+<td>239.0</td>
+<td>197.2773</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7.0</td>
+<td>193.0</td>
+<td>88.8398</td>
+<td>0.0884</td>
+<td>810.1126</td>
+<td>0.0223</td>
+<td>3.9318</td>
+<td>150.0</td>
+<td>236.0</td>
+<td>186.0195</td>
+</tr>
+</tbody></table>
+<p><strong>4.</strong>  <strong>k-means聚类</strong></p>
+<p>这里我们以contrast和mean.1两个维度进行聚类：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 设置要聚类的字段</span></span><br><span class="line">X = np.array(df[[<span class="string">&#x27;contrast&#x27;</span>,<span class="string">&#x27;mean1&#x27;</span>]])</span><br><span class="line"><span class="comment"># 设置簇数为3,默认k-means++算法</span></span><br><span class="line">clf = KMeans(n_clusters=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 将数据代入到聚类模型中</span></span><br><span class="line">clf = clf.fit(X)</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.</strong>  <strong>查看聚类之后的结果：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf.cluster_centers_</span><br></pre></td></tr></table></figure>
+
+<p>array([[ 791.98735711, 166.04901961],</p>
+<p>​    [ 178.66887036, 204.85741088],</p>
+<p>​    [1607.05208313, 163.96385542]])</p>
+<p><strong>6.</strong>  <strong>根据肘方法确定簇数k。</strong></p>
+<p><strong>肘部法求最佳K值</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 肘部法求最佳K值</span></span><br><span class="line">K = <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">mean_distortions = []</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> K:</span><br><span class="line">kmeans = KMeans(n_clusters=k)</span><br><span class="line">kmeans.fit(X)</span><br><span class="line">mean_distortions.append(</span><br><span class="line"><span class="built_in">sum</span>(</span><br><span class="line">np.<span class="built_in">min</span>(</span><br><span class="line">                cdist(X, kmeans.cluster_centers_, metric=<span class="string">&#x27;euclidean&#x27;</span>), axis=<span class="number">1</span>))</span><br><span class="line">    / X.shape[<span class="number">0</span>])</span><br><span class="line">plt.plot(K, mean_distortions, <span class="string">&#x27;bx-&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;k&#x27;</span>)</span><br><span class="line">font = FontProperties(fname=<span class="string">r&#x27;c:\windows\fonts\msyh.ttc&#x27;</span>, size=<span class="number">20</span>)</span><br><span class="line">plt.ylabel(<span class="string">u&#x27;平均畸变程度&#x27;</span>, fontproperties=font)</span><br><span class="line">plt.title(<span class="string">u&#x27;用肘部法确定最佳的K值&#x27;</span>, fontproperties=font)</span><br></pre></td></tr></table></figure>
+
+<p>Text(0.5, 1.0, ‘用肘部法确定最佳的K值’)</p>
+<p><img src="https://s1.ax1x.com/2020/09/08/wlJc0H.png" alt="wlJc0H.png"></p>
+<p><strong>7.</strong>  <strong>比较k-means算法和k-means++算法的误差平方和E</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算两个向量的欧式距离的平方，并返回</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distEclud</span>(<span class="params">vecA, vecB</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(np.power(vecA - vecB, <span class="number">2</span>))</span><br><span class="line"><span class="comment"># K-means算</span></span><br><span class="line">sse = <span class="number">0</span></span><br><span class="line">kmodel = KMeans(n_clusters=<span class="number">2</span>, init=<span class="string">&#x27;random&#x27;</span>)</span><br><span class="line">kmodel.fit(X)</span><br><span class="line"><span class="comment"># 簇中心</span></span><br><span class="line">cluster_ceter_list = kmodel.cluster_centers_</span><br><span class="line"><span class="comment"># 个样本属于的簇序号列表</span></span><br><span class="line">cluster_list = kmodel.labels_.tolist()</span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(X)):</span><br><span class="line">cluster_num = cluster_list[index]</span><br><span class="line">sse += distEclud(X[index, :], cluster_ceter_list[cluster_num])</span><br><span class="line">sse</span><br></pre></td></tr></table></figure>
+
+<p>结果: 81199692.74246562</p>
+<p>把init=’random’去掉使用默认的K-means++算法，重新训练，<strong>结果一致</strong>，不知原因。</p>
+<p>也可以用自带的kmodel.inertia_属性，结果一致。</p>
+<h3 id="四、实验总结-1"><a href="#四、实验总结-1" class="headerlink" title="四、实验总结"></a>四、实验总结</h3><p>任务二学习并使用了K-means算法，通过实际操作，我知道了利用sklearn包实现K-means算法进行聚类，以及它与K-means++算法的区别。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" rel="tag"># 数据挖掘</a>
+              <a href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91/" rel="tag"># 决策树</a>
+              <a href="/tags/K-means/" rel="tag"># K-means</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81%EF%BC%88WxValidate%E4%BD%BF%E7%94%A8%EF%BC%89/" rel="prev" title="微信小程序开发之表单验证（WxValidate使用）">
+      <i class="fa fa-chevron-left"></i> 微信小程序开发之表单验证（WxValidate使用）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/23/my-first-blog/" rel="next" title="my first blog">
+      my first blog <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">数据挖掘-决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E4%B8%80"><span class="nav-number">1.1.</span> <span class="nav-text">任务一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">交叉验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.1.2.</span> <span class="nav-text">二、软件环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.3.</span> <span class="nav-text">三、实验步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.4.</span> <span class="nav-text">四、实验总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E4%BA%8C"><span class="nav-number">1.2.</span> <span class="nav-text">任务二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、软件环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、实验步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、实验总结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">孙云哲</p>
+  <div class="site-description" itemprop="description">记录我的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">孙云哲</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

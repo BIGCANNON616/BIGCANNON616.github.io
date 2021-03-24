@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数据挖掘-FP-growth一、简介​        本项目是基于FP-growth算法的淘宝用户数据关联分析，使用mlxtend包中的FP-growth算法实现数据的频繁模式挖掘并分析 使用的数据集：阿里天池 User Behavior Data from Taobao for Recommendation https:&#x2F;&#x2F;tianchi.aliyun.com&#x2F;dataset&#x2F;dataDetai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘大作业1记录">
+<meta property="og:url" content="http://example.com/2020/04/05/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-FP-growth/index.html">
+<meta property="og:site_name" content="Mr.sun&#39;s notebook">
+<meta property="og:description" content="数据挖掘-FP-growth一、简介​        本项目是基于FP-growth算法的淘宝用户数据关联分析，使用mlxtend包中的FP-growth算法实现数据的频繁模式挖掘并分析 使用的数据集：阿里天池 User Behavior Data from Taobao for Recommendation https:&#x2F;&#x2F;tianchi.aliyun.com&#x2F;dataset&#x2F;dataDetai">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-05T14:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T14:45:38.000Z">
+<meta property="article:author" content="孙云哲">
+<meta property="article:tag" content="数据挖掘">
+<meta property="article:tag" content="FP-growth">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/04/05/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-FP-growth/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数据挖掘大作业1记录 | Mr.sun's notebook</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mr.sun's notebook</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/05/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-FP-growth/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据挖掘大作业1记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-05 22:00:00" itemprop="dateCreated datePublished" datetime="2020-04-05T22:00:00+08:00">2020-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 22:45:38" itemprop="dateModified" datetime="2020-09-16T22:45:38+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据挖掘-FP-growth"><a href="#数据挖掘-FP-growth" class="headerlink" title="数据挖掘-FP-growth"></a>数据挖掘-FP-growth</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>​        本项目是基于FP-growth算法的淘宝用户数据关联分析，使用mlxtend包中的FP-growth算法实现数据的频繁模式挖掘并分析</p>
+<p>使用的数据集：阿里天池 User Behavior Data from Taobao for Recommendation</p>
+<p><a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/dataset/dataDetail?dataId=649">https://tianchi.aliyun.com/dataset/dataDetail?dataId=649</a> </p>
+<h3 id="频繁模式和关联规则"><a href="#频繁模式和关联规则" class="headerlink" title="频繁模式和关联规则"></a>频繁模式和关联规则</h3><p>​        大量数据中的频繁模式、关联和相关关系的发现，在选中市场、决策分析和商务关联方面是有用的。一个流行的应用领域是购物篮分析，通过搜索经常一块（或依次）购买的商品的集合，研究顾客的购买习惯，以发现一些隐藏的、有趣的规则。典型的如顾客购买啤酒的时候很有可能会购买尿布。关联规则挖掘首先找出频繁项集（项的集合，如A和B，满足最小支持度阀值，或任务相关元组的百分比），然后，由它们产生形如A=&gt;B的强关联规则。这些规则也满足最小置信度阀值（预定义的、在满足A的条件下满足B的概率）。进一步分析关联，发现项集A和B之间具有统计相关的相关规则。</p>
+<p>​        对于频繁模式的挖掘，已有许多有效的、可伸缩的算法，由它们可以导出关联和相关规则，书上介绍了Apriori和FP-growth两种算法，在mlxtend包中都有，我决定使用FP-growth算法</p>
+<h3 id="FP-growth算法"><a href="#FP-growth算法" class="headerlink" title="FP-growth算法"></a>FP-growth算法</h3><p>​        <strong>FP-Growth(频繁模式增长算法</strong>是韩嘉炜等人在2000年提出的关联分析算法，它采取如下分治策略：将提供频繁项集的数据库压缩到一棵频繁模式树（FP-tree），但仍保留项集关联信息。在算法中使用了一种称为频繁模式树（Frequent Pattern Tree）的数据结构。FP-tree是一种特殊的前缀树，由频繁项头表和项前缀树构成。FP-Growth算法基于以上的结构加快整个挖掘过程。</p>
+<p>​        相比Apriori算法需要多次扫描数据库，FP-growth只需要对数据库扫描2次。第1次扫描获得当个项目的频率，去掉不满足支持度要求的项，并对剩下的项排序。第2次扫描建立一颗FP-Tree树。</p>
+<p>挖掘频繁模式前首先要构造FP-Tree，输入一个交易数据库DB和一个最小支持度threshold，输出:它的FP-tree.</p>
+<h2 id="二、软件环境准备"><a href="#二、软件环境准备" class="headerlink" title="二、软件环境准备"></a>二、软件环境准备</h2><p>Visual Studio Code</p>
+<p>Anaconda3</p>
+<p>在Anaconda中安装pandas和mlxtend</p>
+<p><code>conda install -c conda-forge mlxtend</code></p>
+<p> <code>conda install -c conda-forge pandas</code></p>
+<p>mlxtend-master程序源码（<a target="_blank" rel="noopener" href="https://github.com/rasbt/mlxtend%EF%BC%89">https://github.com/rasbt/mlxtend）</a></p>
+<p> 淘宝的用户行为数据集（<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/dataset/dataDetail?dataId=649%EF%BC%89">https://tianchi.aliyun.com/dataset/dataDetail?dataId=649）</a></p>
+<p>使用pip安装包时使用国内源，否则可能超时报错</p>
+<p><code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mlxtend</code></p>
+<blockquote>
+<p>在使用vs2019安装python后要设置环境变量，在系统变量&gt;path中添加C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\Scripts，否则会提示pip等不是命令</p>
+</blockquote>
+<h2 id="三、基本思路"><a href="#三、基本思路" class="headerlink" title="三、基本思路"></a>三、基本思路</h2><ol>
+<li>读懂mlxtend中的FP-growth算法部分，了解其原理和大致过程</li>
+<li>在jupyter notebook中建立python3文件</li>
+<li>通过Pandas读入数据，首先对数据进行观察：有无索引、标号、有没有数据缺失</li>
+<li>数据预处理</li>
+<li>频繁模式挖掘</li>
+<li>结果分析</li>
+</ol>
+<h2 id="四、算法分析"><a href="#四、算法分析" class="headerlink" title="四、算法分析"></a>四、算法分析</h2><ul>
+<li><p>在vscode中打开mlxtend-master文件夹</p>
+</li>
+<li><p>mlxtend-master\docs\sources\user_guide\frequent_patterns路径下可以找到介绍文档fpgrowth.ipynb，最好用jupyter notebook打开。</p>
+</li>
+<li><p>mlxtend-master\mlxtend\frequent_patterns路径下可以找到FP-growth和挖掘关联规则相关代码，</p>
+</li>
+<li><p>主要涉及三个文件的代码，fpgrowth.py是最后用到的主函数，其中调用的大多数函数在fpcommon.py中，输入一个数据集、最小支持度、是否使用列名、最大频繁度、是否显示树生成过程，返回支持度和频繁项集的列表。association_rules.py是关联规则挖掘的算法。</p>
+</li>
+<li><p>实际过程只用两个函数</p>
+<p>fpgrowth(df, min_support, use_colnames, max_len, verbose):</p>
+<p>association_rules(df, metric, min_threshold, support_only):</p>
+</li>
+<li><p>代码的具体分析见附录，之前没有python基础，根据自己理解进行了注解(谷歌机翻)，可能有误。</p>
+</li>
+</ul>
+<h3 id="FP-growth简要步骤"><a href="#FP-growth简要步骤" class="headerlink" title="FP-growth简要步骤"></a>FP-growth简要步骤</h3><ol>
+<li>检查数据，有错就抛出异常</li>
+<li>将数据的列名组合为一个索引序列</li>
+<li>调用setup_fptree建立FP树，<ol>
+<li>判断数据是否稀疏，计算每项的支持度</li>
+<li>去掉支持度小于最小支持度的项，生成频繁1项的一维列表</li>
+<li>定义要插入FP树的项目的排序</li>
+<li>构建FP树，包含根节点、节点、子树和排序，每个节点包含内容、出现次数、父节点和子节点</li>
+<li>构建FP树过程参考此视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LJ411W7rD">https://www.bilibili.com/video/BV1LJ411W7rD</a> </li>
+</ol>
+</li>
+<li>计算支持度计数</li>
+<li>执行fpgrowth算法的递归步骤。<ol>
+<li> 如果树只有一条路径，可以组合生成所有剩余项集</li>
+<li>生成子树以生成更大的频繁项集</li>
+</ol>
+</li>
+<li>生成支持度和项集的列表</li>
+</ol>
+<h3 id="挖掘关联规则"><a href="#挖掘关联规则" class="headerlink" title="挖掘关联规则"></a>挖掘关联规则</h3><p>​        搬运自教材P164</p>
+<p>​        一旦由数据库D中的事务找出频繁项集，就可以直接由它们产生强关联规则（强关联规则满足最小支持度和最小置信度）。对于置信度，可以用下式计算。</p>
+<p>confidence(A=&gt;B)= P(A|B) = support_count(AUB) / support_count(A)</p>
+<p>​        条件概率用项集的支持度计数表示，其中， support_count（AUB）是包含项集AUB的事务数，而 support_count(A)是包含项集A的事务数。根据该式，关联规则可以产生如下：</p>
+<ul>
+<li><p>对于每个频繁项集l，产生l的所有非空子集。</p>
+</li>
+<li><p>对于l的每个非空子集s，如果support_count(t) / support_count(s)≥min_conf,则输出规则”s=(l-s)。”</p>
+<p>其中，min_conf是最小置信度阈值。</p>
+</li>
+</ul>
+<p>​        由于规则由频繁项集产生，因此每个规则都自动地满足最小支持度。频繁项集和它们的支持度可以预先存放在散列表中，使得它们可以被快速访问。</p>
+<p>mlxtend示例 <a target="_blank" rel="noopener" href="http://rasbt.github.io/mlxtend/user_guide/frequent_patterns/association_rules/">http://rasbt.github.io/mlxtend/user_guide/frequent_patterns/association_rules/</a> </p>
+<p>mlxtend使用了 DataFrame 方式来描述关联规则，而不是 —&gt; 符号，其中：</p>
+<ul>
+<li>antecedents：规则先导项</li>
+<li>consequents：规则后继项</li>
+<li>antecedent support：规则先导项支持度</li>
+<li>consequent support：规则后继项支持度</li>
+<li>support：规则支持度 （前项后项并集的支持度）</li>
+<li>confidence：规则置信度 （规则置信度：规则支持度support / 规则先导项）</li>
+<li>lift：规则提升度，表示含有先导项条件下同时含有后继项的概率，与后继项总体发生的概率之比。</li>
+<li>leverage：规则杠杆率，表示当先导项与后继项独立分布时，先导项与后继项一起出现的次数比预期多多少。</li>
+<li>conviction：规则确信度，与提升度类似，但用差值表示。</li>
+</ul>
+<h2 id="五、实验步骤"><a href="#五、实验步骤" class="headerlink" title="五、实验步骤"></a>五、实验步骤</h2><ol>
+<li><p>打开anconda命令行进入合适位置</p>
+</li>
+<li><p>输入jupyter notebook进入编辑环境，新建python3文件</p>
+</li>
+<li><p><strong>数据预处理</strong></p>
+<ol>
+<li><p>```python<br>import pandas as pd # 导入Pandas</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. &#96;&#96;&#96;python</span><br><span class="line">   data &#x3D; pd.read_csv(&#39;data_buy.csv&#39;, header&#x3D;None) # 读入解压好的 csv 文件到 data 变量中</span><br><span class="line">   #这里pd.read_csv是将数据一次性读入内存，可以使用分块读取等方法</span><br></pre></td></tr></table></figure></li>
+<li><p>```python<br>data.info() # 先看一下读入的数据信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&lt;class ‘pandas.core.frame.DataFrame’&gt;<br>RangeIndex: 100150807 entries, 0 to 100150806<br>Data columns (total 5 columns):</p>
+<h1 id="Column-Dtype"><a href="#Column-Dtype" class="headerlink" title="Column  Dtype"></a>Column  Dtype</h1><hr>
+<p> 0   0       int64<br> 1   1       int64<br> 2   2       int64<br> 3   3       object<br> 4   4       int64<br>dtypes: int64(4), object(1)<br>memory usage: 3.7+ GB</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. &#96;&#96;&#96;python</span><br><span class="line">   data.head() # 查看数据前5行</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">0</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2268318</td>
+<td align="right">2520377</td>
+<td align="right">pv</td>
+<td align="right">1511544070</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2333346</td>
+<td align="right">2520771</td>
+<td align="right">pv</td>
+<td align="right">1511561733</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2576651</td>
+<td align="right">149192</td>
+<td align="right">pv</td>
+<td align="right">1511572885</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3830808</td>
+<td align="right">4181361</td>
+<td align="right">pv</td>
+<td align="right">1511593493</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4365585</td>
+<td align="right">2520377</td>
+<td align="right">pv</td>
+<td align="right">1511596146</td>
+</tr>
+</tbody></table>
+<p>现在表格没有列名称，不方便处理，我们可以手动添加</p>
+</li>
+<li><p>```python</p>
+<h1 id="用户ID，商品ID，商品类目ID，行为类型，时间戳"><a href="#用户ID，商品ID，商品类目ID，行为类型，时间戳" class="headerlink" title="用户ID，商品ID，商品类目ID，行为类型，时间戳"></a>用户ID，商品ID，商品类目ID，行为类型，时间戳</h1><p>data.columns = [‘user’, ‘item’, ‘category’, ‘behavior’, ‘timestamp’] </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6. &#96;&#96;&#96;python</span><br><span class="line">   data.head() # 再来看一下数据 </span><br></pre></td></tr></table></figure></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">user</th>
+<th align="right">item</th>
+<th align="right">category</th>
+<th align="right">behavior</th>
+<th align="right">timestamp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2268318</td>
+<td align="right">2520377</td>
+<td align="right">pv</td>
+<td align="right">1511544070</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2333346</td>
+<td align="right">2520771</td>
+<td align="right">pv</td>
+<td align="right">1511561733</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2576651</td>
+<td align="right">149192</td>
+<td align="right">pv</td>
+<td align="right">1511572885</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3830808</td>
+<td align="right">4181361</td>
+<td align="right">pv</td>
+<td align="right">1511593493</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4365585</td>
+<td align="right">2520377</td>
+<td align="right">pv</td>
+<td align="right">1511596146</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">7. ```python</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<h1 id="将时间戳转换为时间格式-读入数据按秒计算"><a href="#将时间戳转换为时间格式-读入数据按秒计算" class="headerlink" title="将时间戳转换为时间格式,读入数据按秒计算"></a>将时间戳转换为时间格式,读入数据按秒计算</h1><p>   data[‘time’]=pd.to_datetime(data[‘timestamp’],unit=’s’)<br>   data.head()</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   |      | user |    item | category | behavior |  timestamp |                time |</span><br><span class="line">   | ---: | ---: | ------: | -------: | -------: | ---------: | ------------------: |</span><br><span class="line">   |    0 |    1 | 2268318 |  2520377 |       pv | 1511544070 | 2017-11-24 17:21:10 |</span><br><span class="line">   |    1 |    1 | 2333346 |  2520771 |       pv | 1511561733 | 2017-11-24 22:15:33 |</span><br><span class="line">   |    2 |    1 | 2576651 |   149192 |       pv | 1511572885 | 2017-11-25 01:21:25 |</span><br><span class="line">   |    3 |    1 | 3830808 |  4181361 |       pv | 1511593493 | 2017-11-25 07:04:53 |</span><br><span class="line">   |    4 |    1 | 4365585 |  2520377 |       pv | 1511596146 | 2017-11-25 07:49:06 |</span><br><span class="line"></span><br><span class="line">8. &#96;&#96;&#96;python</span><br><span class="line">   # 提取出时间的小时</span><br><span class="line">   data &#x3D; data.drop(columns&#x3D;[&#39;timestamp&#39;])</span><br><span class="line">   data[&#39;daily&#39;] &#x3D; data[&#39;time&#39;].dt.hour</span><br><span class="line">   data.head()</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">user</th>
+<th align="right">item</th>
+<th align="right">category</th>
+<th align="right">behavior</th>
+<th align="right">time</th>
+<th align="right">daily</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2268318</td>
+<td align="right">2520377</td>
+<td align="right">pv</td>
+<td align="right">2017-11-24 17:21:10</td>
+<td align="right">17</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2333346</td>
+<td align="right">2520771</td>
+<td align="right">pv</td>
+<td align="right">2017-11-24 22:15:33</td>
+<td align="right">22</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2576651</td>
+<td align="right">149192</td>
+<td align="right">pv</td>
+<td align="right">2017-11-25 01:21:25</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3830808</td>
+<td align="right">4181361</td>
+<td align="right">pv</td>
+<td align="right">2017-11-25 07:04:53</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4365585</td>
+<td align="right">2520377</td>
+<td align="right">pv</td>
+<td align="right">2017-11-25 07:49:06</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">9. ```python</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<h1 id="分组统计每个时间段发生的各种行为"><a href="#分组统计每个时间段发生的各种行为" class="headerlink" title="分组统计每个时间段发生的各种行为"></a>分组统计每个时间段发生的各种行为</h1><p>   table_time = data.groupby([‘daily’,’behavior’]).size().unstack()<br>   table_time.head()</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   | behavior |    buy |   cart |    fav |      pv |</span><br><span class="line">   | -------: | -----: | -----: | -----: | ------: |</span><br><span class="line">   |    daily |        |        |        |         |</span><br><span class="line">   |        0 |  64917 | 192036 | 103721 | 3043136 |</span><br><span class="line">   |        1 |  96134 | 229890 | 127976 | 3729408 |</span><br><span class="line">   |        2 | 127933 | 266963 | 147752 | 4335949 |</span><br><span class="line">   |        3 | 122048 | 260831 | 145412 | 4214991 |</span><br><span class="line">   |        4 | 118591 | 255811 | 140862 | 4257521 |</span><br><span class="line"></span><br><span class="line">10. &#96;&#96;&#96;python</span><br><span class="line">    # 画出柱状图，非堆叠，横轴标注不旋转，规定尺寸</span><br><span class="line">    table_time.plot.bar(stacked&#x3D;False,rot&#x3D;0,figsize&#x3D;(16,7))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x28e81de33c8&gt;
+
+![table_time](https://s1.ax1x.com/2020/04/03/GaWtoD.png)
+
+​        用户行为有四种：pv（点击）、cart（加购）、fav（收藏）、buy（购买）
+
+​        从图中可以看到 ，用户行为高峰在中午时间段，上午相对比较平稳，下午两点后开始下降到九点， 数据集包含了2017年11月25日至2017年12月3日之间,有两个周末，可能使用户活跃时间偏早。部分用户在深夜活跃，可能与商家活动有关。但是由于pv量显著高于其他用户行为的发生，因此需要根据不同行为进行研究。 
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 去掉pv量后重新画图</span></span><br><span class="line">table_time1 = table_time.drop(columns=[<span class="string">&#x27;pv&#x27;</span>])</span><br><span class="line">table_time1.plot.bar(stacked=<span class="literal">False</span>,rot=<span class="number">0</span>,figsize=(<span class="number">16</span>,<span class="number">7</span>))</span><br></pre></td></tr></table></figure>
+
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x28e8215f848&gt;
+
+![Ga4IOI.png](https://s1.ax1x.com/2020/04/03/Ga4IOI.png)
+
+​        可以看到用户的其他行为趋势大致相同
+
+​        我们的目的是挖掘用户购买商品类别间的频繁模式和关联规则，下面开始正式的数据预处理。
+</code></pre>
+<ol start="11">
+<li><p>```python</p>
+<h1 id="去除具体商品信息，时间信息，只看用户对某类商品的操作数据"><a href="#去除具体商品信息，时间信息，只看用户对某类商品的操作数据" class="headerlink" title="去除具体商品信息，时间信息，只看用户对某类商品的操作数据"></a>去除具体商品信息，时间信息，只看用户对某类商品的操作数据</h1><p>data=data.drop(columns=[‘item’, ‘time’, ‘daily’])<br>data.head()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    |      | user | category | behavior |</span><br><span class="line">    | ---: | ---: | -------: | -------: |</span><br><span class="line">    |    0 |    1 |  2520377 |       pv |</span><br><span class="line">    |    1 |    1 |  2520771 |       pv |</span><br><span class="line">    |    2 |    1 |   149192 |       pv |</span><br><span class="line">    |    3 |    1 |  4181361 |       pv |</span><br><span class="line">    |    4 |    1 |  2520377 |       pv |</span><br><span class="line"></span><br><span class="line">12. &#96;&#96;&#96;python</span><br><span class="line">    # 若只关注用户购买行为</span><br><span class="line">    data&#x3D;data[data[&#39;behavior&#39;]&#x3D;&#x3D;&#39;buy&#39;]</span><br><span class="line">    # 按照用户和商品种类去重</span><br><span class="line">    data&#x3D;data.drop_duplicates([&#39;user&#39;,&#39;category&#39;]).copy()</span><br><span class="line">    data.head()</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">user</th>
+<th align="right">category</th>
+<th align="right">behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">71</td>
+<td align="right">100</td>
+<td align="right">2951233</td>
+<td align="right">buy</td>
+</tr>
+<tr>
+<td align="right">73</td>
+<td align="right">100</td>
+<td align="right">4869428</td>
+<td align="right">buy</td>
+</tr>
+<tr>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">2429887</td>
+<td align="right">buy</td>
+</tr>
+<tr>
+<td align="right">119</td>
+<td align="right">100</td>
+<td align="right">3002561</td>
+<td align="right">buy</td>
+</tr>
+<tr>
+<td align="right">125</td>
+<td align="right">100</td>
+<td align="right">4098232</td>
+<td align="right">buy</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>```python</p>
+<h1 id="先转换DataFrame数据为包含数据的列表，后续挖掘时再转换回来"><a href="#先转换DataFrame数据为包含数据的列表，后续挖掘时再转换回来" class="headerlink" title="先转换DataFrame数据为包含数据的列表，后续挖掘时再转换回来"></a>先转换DataFrame数据为包含数据的列表，后续挖掘时再转换回来</h1><p>data_list = data.groupby(‘user’)[‘category’].apply(list)<br>data_list[:5] # 查看列表前5行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    user</span><br><span class="line">    2     [2865017, 1849958, 2925160, 3439012, 2885642, ...</span><br><span class="line">    4                           [2465336, 4145813, 4801426]</span><br><span class="line">    11                                            [3102419]</span><br><span class="line">    16                                   [3248072, 3898483]</span><br><span class="line">    17                                            [3702593]</span><br><span class="line">    Name: category, dtype: object</span><br><span class="line"></span><br><span class="line">14. &#96;&#96;&#96;python</span><br><span class="line">    transactions &#x3D; list(data_list)</span><br><span class="line">    transactions[:5]</span><br></pre></td></tr></table></figure>
+
+<p>[[2865017, 1849958, 2925160, 3439012, 2885642, 4159072],<br> [2465336, 4145813, 4801426],<br> [3102419],<br> [3248072, 3898483],<br> [3702593]]</p>
+</li>
+<li><p>```python</p>
+<h1 id="保存清洗后的数据"><a href="#保存清洗后的数据" class="headerlink" title="保存清洗后的数据"></a>保存清洗后的数据</h1><p>import json<br>json.dump(transactions, open(‘transactions.json’, ‘w’))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">4. **频繁模式和关联规则**</span><br><span class="line"></span><br><span class="line">   1. 由于mlxtend的模型只接受特定的数据格式。</span><br><span class="line"></span><br><span class="line">      TransactionEncoder类似于独热编码，每个值转换为一个唯一的bool值</span><br><span class="line"></span><br><span class="line">      &#96;&#96;&#96;python</span><br><span class="line">      import pandas as pd</span><br><span class="line">      import json</span><br><span class="line">      # 传入模型的数据需要满足特定的格式，可以用这种方法来转换为bool值，也可以用函数转换为0、1</span><br><span class="line">      from mlxtend.preprocessing import TransactionEncoder</span><br><span class="line">      # 导入Apriori算法、fpgrowth算法和导入关联规则</span><br><span class="line">      from mlxtend.frequent_patterns import apriori, fpgrowth</span><br><span class="line">      from mlxtend.frequent_patterns import association_rules</span><br></pre></td></tr></table></figure></li>
+<li><p>```python</p>
+<h1 id="导入预处理好的数据“transactions-json”"><a href="#导入预处理好的数据“transactions-json”" class="headerlink" title="导入预处理好的数据“transactions.json”"></a>导入预处理好的数据“transactions.json”</h1><p>dataset = json.load(open(‘transactions.json’))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. &#96;&#96;&#96;python</span><br><span class="line">   # 使用FP-Growth算法挖掘频繁项集，最小支持度取值0.001</span><br><span class="line">   te &#x3D; TransactionEncoder()</span><br><span class="line">   te_ary &#x3D; te.fit(dataset).transform(dataset)</span><br><span class="line">   df &#x3D; pd.DataFrame(te_ary, columns&#x3D;te.columns_)</span><br><span class="line">   frequent_itemsets &#x3D; fpgrowth(df, min_support&#x3D;0.001)</span><br><span class="line">   frequent_itemsets # 频繁项集</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">support</th>
+<th align="right">itemsets</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">0.040330</td>
+<td align="right">(3973)</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">0.023215</td>
+<td align="right">(5751)</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">0.004299</td>
+<td align="right">(4765)</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">0.002152</td>
+<td align="right">(4030)</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">0.040941</td>
+<td align="right">(5734)</td>
+</tr>
+<tr>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+</tr>
+<tr>
+<td align="right">598</td>
+<td align="right">0.001825</td>
+<td align="right">(3627, 3541)</td>
+</tr>
+<tr>
+<td align="right">599</td>
+<td align="right">0.001126</td>
+<td align="right">(3449, 1790)</td>
+</tr>
+<tr>
+<td align="right">600</td>
+<td align="right">0.001038</td>
+<td align="right">(3449, 3766)</td>
+</tr>
+<tr>
+<td align="right">601</td>
+<td align="right">0.001208</td>
+<td align="right">(3449, 1349)</td>
+</tr>
+<tr>
+<td align="right">602</td>
+<td align="right">0.001048</td>
+<td align="right">(3449, 5734)</td>
+</tr>
+</tbody></table>
+<p>603 rows × 2 columns</p>
+</li>
+<li><p>```python</p>
+<h1 id="获取置信度-gt-0-1的关联规则，并按提升度倒序排列"><a href="#获取置信度-gt-0-1的关联规则，并按提升度倒序排列" class="headerlink" title="获取置信度&gt;=0.1的关联规则，并按提升度倒序排列"></a>获取置信度&gt;=0.1的关联规则，并按提升度倒序排列</h1><p>association_rules(frequent_itemsets, metric=”confidence”, min_threshold=0.1).sort_values(‘lift’, ascending=False)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line">      </span><br><span class="line">      |      | antecedents | consequents | antecedent support | consequent support |  support | confidence |      lift | leverage | conviction |</span><br><span class="line">      | ---: | ----------: | ----------: | -----------------: | -----------------: | -------: | ---------: | --------: | -------: | ---------: |</span><br><span class="line">      |   20 |      (6020) |      (3627) |           0.004004 |           0.021094 | 0.001220 |   0.304606 | 14.440105 | 0.001135 |   1.407700 |</span><br><span class="line">      |   22 |      (3541) |      (3627) |           0.007655 |           0.021094 | 0.001825 |   0.238391 | 11.301132 | 0.001663 |   1.285313 |</span><br><span class="line">      |   14 |      (5148) |      (3627) |           0.012316 |           0.021094 | 0.002098 |   0.170390 |  8.077478 | 0.001839 |   1.179959 |</span><br><span class="line">      |   13 |      (1421) |      (2563) |           0.014085 |           0.015971 | 0.001597 |   0.113399 |  7.100270 | 0.001372 |   1.109889 |</span><br><span class="line">      |   12 |      (2563) |      (1421) |           0.015971 |           0.014085 | 0.001597 |   0.100009 |  7.100270 | 0.001372 |   1.095472 |</span><br><span class="line">      |   11 |      (2563) |      (1763) |           0.015971 |           0.017494 | 0.001617 |   0.101220 |  5.785993 | 0.001337 |   1.093155 |</span><br><span class="line">      |   19 |       (194) |      (1790) |           0.014359 |           0.022164 | 0.001605 |   0.111756 |  5.042266 | 0.001286 |   1.100864 |</span><br><span class="line">      |    0 |      (3973) |      (5751) |           0.040330 |           0.023215 | 0.004433 |   0.109927 |  4.735128 | 0.003497 |   1.097421 |</span><br><span class="line">      |    1 |      (5751) |      (3973) |           0.023215 |           0.040330 | 0.004433 |   0.190967 |  4.735128 | 0.003497 |   1.186194 |</span><br><span class="line">      |   15 |       (194) |      (1349) |           0.014359 |           0.031514 | 0.001979 |   0.137856 |  4.374467 | 0.001527 |   1.123346 |</span><br><span class="line">      |    8 |      (1790) |      (1349) |           0.022164 |           0.031514 | 0.002790 |   0.125881 |  3.994464 | 0.002092 |   1.107957 |</span><br><span class="line">      |   10 |      (3235) |      (1349) |           0.015650 |           0.031514 | 0.001872 |   0.119643 |  3.796518 | 0.001379 |   1.100106 |</span><br><span class="line">      |    2 |      (3375) |      (6609) |           0.016750 |           0.033797 | 0.002137 |   0.127586 |  3.775105 | 0.001571 |   1.107505 |</span><br><span class="line">      |    9 |      (1790) |      (6609) |           0.022164 |           0.033797 | 0.002475 |   0.111655 |  3.303741 | 0.001726 |   1.087645 |</span><br><span class="line">      |    7 |      (1349) |      (6609) |           0.031514 |           0.033797 | 0.003409 |   0.108164 |  3.200443 | 0.002344 |   1.083387 |</span><br><span class="line">      |    6 |      (6609) |      (1349) |           0.033797 |           0.031514 | 0.003409 |   0.100858 |  3.200443 | 0.002344 |   1.077123 |</span><br><span class="line">      |    4 |      (3450) |      (6609) |           0.013959 |           0.033797 | 0.001475 |   0.105689 |  3.127213 | 0.001004 |   1.080389 |</span><br><span class="line">      |    3 |      (5831) |      (6542) |           0.018534 |           0.035327 | 0.001910 |   0.103033 |  2.916559 | 0.001255 |   1.075484 |</span><br><span class="line">      |   17 |       (194) |      (5734) |           0.014359 |           0.040941 | 0.001486 |   0.103470 |  2.527278 | 0.000898 |   1.069745 |</span><br><span class="line">      |    5 |      (1349) |      (3766) |           0.031514 |           0.042770 | 0.003267 |   0.103681 |  2.424128 | 0.001920 |   1.067956 |</span><br><span class="line">      |   16 |       (194) |      (3766) |           0.014359 |           0.042770 | 0.001452 |   0.101088 |  2.363492 | 0.000837 |   1.064875 |</span><br><span class="line">      |   21 |      (6593) |      (2003) |           0.020254 |           0.044546 | 0.002092 |   0.103312 |  2.319203 | 0.001190 |   1.065536 |</span><br><span class="line">      |   18 |       (194) |      (2003) |           0.014359 |           0.044546 | 0.001465 |   0.102020 |  2.290203 | 0.000825 |   1.064003 |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 六、代码分析</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fpgrowth.py:</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;python</span><br><span class="line">import math</span><br><span class="line">import itertools</span><br><span class="line">from ..frequent_patterns import fpcommon as fpc</span><br><span class="line"></span><br><span class="line">def fpgrowth(df, min_support&#x3D;0.5, use_colnames&#x3D;False, max_len&#x3D;None, verbose&#x3D;0):</span><br><span class="line">    &quot;&quot;&quot;从一键式DataFrame获取频繁项集</span><br><span class="line">    参数</span><br><span class="line">    -----------</span><br><span class="line">    df : pandas DataFrame</span><br><span class="line">      pandas DataFrame的编码格式。 还支持具有稀疏数据的DataFrames</span><br><span class="line">      请注意，旧的pandas SparseDataFrame格式在mlxtend&gt; &#x3D; 0.17.2中不再受支持。</span><br><span class="line"></span><br><span class="line">      允许的值为0&#x2F;1或True &#x2F; False。</span><br><span class="line">      举例,</span><br><span class="line"></span><br><span class="line">           Apple  Bananas   Beer  Chicken   Milk   Rice</span><br><span class="line">        0   True    False   True     True  False   True</span><br><span class="line">        1   True    False   True    False  False   True</span><br><span class="line">        2   True    False   True    False  False  False</span><br><span class="line">        3   True     True  False    False  False  False</span><br><span class="line">        4  False    False   True     True   True   True</span><br><span class="line">        5  False    False   True    False   True   True</span><br><span class="line">        6  False    False   True    False   True  False</span><br><span class="line">        7   True     True  False    False  False  False</span><br><span class="line"></span><br><span class="line">    min_support : float (default: 0.5)</span><br><span class="line">      0到1之间的浮点数，用于最小程度地支持返回的项目集。</span><br><span class="line">      相对支持度&#x3D;发生项目的交易 &#x2F; 总交易.     </span><br><span class="line"></span><br><span class="line">    use_colnames : bool (default: False)</span><br><span class="line">      如果为true，则在返回的DataFrame中使用DataFrame的列名而不是列索引。</span><br><span class="line"></span><br><span class="line">    max_len : int (default: None)</span><br><span class="line">      生成的项目集的最大长度。 如果全部为“无”（默认）,评估可能的项目集长度。</span><br><span class="line"></span><br><span class="line">    verbose : int (default: 0)</span><br><span class="line">      显示条件树生成的阶段。</span><br><span class="line"></span><br><span class="line">    Returns</span><br><span class="line">    -----------</span><br><span class="line">    pandas DataFrame with columns [&#39;support&#39;, &#39;itemsets&#39;] of all itemsets</span><br><span class="line">      that are &gt;&#x3D; &#96;min_support&#96; and &lt; than &#96;max_len&#96;</span><br><span class="line">      (if &#96;max_len&#96; is not None).</span><br><span class="line">      Each itemset in the &#39;itemsets&#39; column is of type &#96;frozenset&#96;,</span><br><span class="line">      这是Python内置类型，其行为类似于设置，它是不可变的</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    fpc.valid_input_check(df) #检查输入的数据</span><br><span class="line">    </span><br><span class="line">	# 输入的最小支持度&lt;&#x3D;0，抛出异常</span><br><span class="line">    if min_support &lt;&#x3D; 0.:</span><br><span class="line">        raise ValueError(&#39;&#96;min_support&#96; must be a positive &#39;</span><br><span class="line">                         &#39;number within the interval &#96;(0, 1]&#96;. &#39;</span><br><span class="line">                         &#39;Got %s.&#39; % min_support)</span><br><span class="line">	</span><br><span class="line">    # 将数据的列名组合为一个索引序列</span><br><span class="line">    colname_map &#x3D; None</span><br><span class="line">    if use_colnames:</span><br><span class="line">        colname_map &#x3D; &#123;idx: item for idx, item in enumerate(df.columns)&#125;</span><br><span class="line">	</span><br><span class="line">    tree &#x3D; fpc.setup_fptree(df, min_support)  #建立FP树</span><br><span class="line">     # 最小支持度计数 &#x3D; 总数*相对支持度，index返回索引</span><br><span class="line">    minsup &#x3D; math.ceil(min_support * len(df.index)) </span><br><span class="line">    generator &#x3D; fpg_step(tree, minsup, colname_map, max_len, verbose)  #生成树</span><br><span class="line"></span><br><span class="line">    return fpc.generate_itemsets(generator, len(df.index), colname_map)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def fpg_step(tree, minsup, colnames, max_len, verbose):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    执行fpgrowth算法的递归步骤。</span><br><span class="line"></span><br><span class="line">    参数</span><br><span class="line">    ----------</span><br><span class="line">    tree : FPTree</span><br><span class="line">    minsup : int</span><br><span class="line"></span><br><span class="line">    产量</span><br><span class="line">    ------</span><br><span class="line">    字符串列表</span><br><span class="line">         minsup项目集中已发生的项目集。</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    count &#x3D; 0</span><br><span class="line">    items &#x3D; tree.nodes.keys()</span><br><span class="line">    if tree.is_path():</span><br><span class="line">        # 如果树只有一条路径，可以组合生成所有剩余项集，而无需生成其他条件树</span><br><span class="line">        size_remain &#x3D; len(items) + 1</span><br><span class="line">        if max_len:</span><br><span class="line">            size_remain &#x3D; max_len - len(tree.cond_items) + 1</span><br><span class="line">        for i in range(1, size_remain):</span><br><span class="line">            for itemset in itertools.combinations(items, i):</span><br><span class="line">                count +&#x3D; 1</span><br><span class="line">                support &#x3D; min([tree.nodes[i][0].count for i in itemset])</span><br><span class="line">                yield support, tree.cond_items + list(itemset)</span><br><span class="line">    elif not max_len or max_len &gt; len(tree.cond_items):</span><br><span class="line">        for item in items:</span><br><span class="line">            count +&#x3D; 1</span><br><span class="line">            support &#x3D; sum([node.count for node in tree.nodes[item]])</span><br><span class="line">            yield support, tree.cond_items + [item]</span><br><span class="line"></span><br><span class="line">    if verbose:</span><br><span class="line">        tree.print_status(count, colnames)</span><br><span class="line"></span><br><span class="line">    # 生成子树以生成更大的频繁项集</span><br><span class="line">    if not tree.is_path() and (not max_len or max_len &gt; len(tree.cond_items)):</span><br><span class="line">        for item in items:</span><br><span class="line">            cond_tree &#x3D; tree.conditional_tree(item, minsup)</span><br><span class="line">            for sup, iset in fpg_step(cond_tree, minsup,</span><br><span class="line">                                      colnames, max_len, verbose):</span><br><span class="line">                yield sup, iset</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<p>fpcommon.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">from</span> distutils.version <span class="keyword">import</span> LooseVersion <span class="keyword">as</span> Version</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> __version__ <span class="keyword">as</span> pandas_version</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setup_fptree</span>(<span class="params">df, min_support</span>):</span></span><br><span class="line">    num_itemsets = <span class="built_in">len</span>(df.index)        <span class="comment">#数据库中项目集的数量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断df是否是稀疏的</span></span><br><span class="line">    is_sparse = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(df, <span class="string">&quot;sparse&quot;</span>):</span><br><span class="line">        <span class="comment"># 稀疏的DataFrame (pandas &gt;= 0.24)</span></span><br><span class="line">        <span class="keyword">if</span> df.size == <span class="number">0</span>:</span><br><span class="line">            itemsets = df.values</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            itemsets = df.sparse.to_coo().tocsr() <span class="comment">#转换为稀疏的</span></span><br><span class="line">            is_sparse = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 稠密的DataFrame</span></span><br><span class="line">        itemsets = df.values</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每个项目的支持度</span></span><br><span class="line">    <span class="comment"># 如果项目集稀疏，则np.sum返回形状为（1，N）的np.matrix矩阵</span></span><br><span class="line">    item_support = np.array(np.<span class="built_in">sum</span>(itemsets, axis=<span class="number">0</span>) / <span class="built_in">float</span>(num_itemsets))</span><br><span class="line">    <span class="comment"># 不分行列改成一串</span></span><br><span class="line">    item_support = item_support.reshape(-<span class="number">1</span>)</span><br><span class="line">	<span class="comment"># 去掉小于设定的最小支持度的项，完成频繁一项集</span></span><br><span class="line">    items = np.nonzero(item_support &gt;= min_support)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义要插入FPTree的项目的排序</span></span><br><span class="line">    <span class="comment"># argsort()返回的是支持度从小到大的索引值。</span></span><br><span class="line">    <span class="comment"># enumerate()将数据组合为一个索引序列，完成F-list</span></span><br><span class="line">    indices = item_support[items].argsort()</span><br><span class="line">    rank = &#123;item: i <span class="keyword">for</span> i, item <span class="keyword">in</span> <span class="built_in">enumerate</span>(items[indices])&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据顺序插入项目集来构建树</span></span><br><span class="line">    <span class="comment"># 为了减少树大小，插入按最频繁到最不频繁的顺序进行</span></span><br><span class="line">    tree = FPTree(rank)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_itemsets):</span><br><span class="line">        <span class="keyword">if</span> is_sparse:</span><br><span class="line">            <span class="comment"># 项目集已转换为CSR格式，以加快以下行的速度。 它具有3个属性：</span></span><br><span class="line">            <span class="comment">#  - itemsets.data 包含非null值, shape(#nnz,)</span></span><br><span class="line">            <span class="comment">#  - itemsets.indices 包含非空元素的列数, shape(#nnz,)</span></span><br><span class="line">            <span class="comment">#  - itemsets.indptr[i] 包含第i行中第一个非null元素的itemet.indices中的偏移量, shape(1+#nrows,)</span></span><br><span class="line">            nonnull = itemsets.indices[itemsets.indptr[i]:itemsets.indptr[i+<span class="number">1</span>]]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            nonnull = np.where(itemsets[i, :])[<span class="number">0</span>]</span><br><span class="line">        itemset = [item <span class="keyword">for</span> item <span class="keyword">in</span> nonnull <span class="keyword">if</span> item <span class="keyword">in</span> rank]</span><br><span class="line">        itemset.sort(key=rank.get, reverse=<span class="literal">True</span>)</span><br><span class="line">        tree.insert_itemset(itemset)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tree, rank</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成支持度和项集的列表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_itemsets</span>(<span class="params">generator, num_itemsets, colname_map</span>):</span></span><br><span class="line">    itemsets = []</span><br><span class="line">    supports = []</span><br><span class="line">    <span class="keyword">for</span> sup, iset <span class="keyword">in</span> generator:</span><br><span class="line">        itemsets.append(<span class="built_in">frozenset</span>(iset))</span><br><span class="line">        supports.append(sup / num_itemsets)</span><br><span class="line"></span><br><span class="line">    res_df = pd.DataFrame(&#123;<span class="string">&#x27;support&#x27;</span>: supports, <span class="string">&#x27;itemsets&#x27;</span>: itemsets&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> colname_map <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        res_df[<span class="string">&#x27;itemsets&#x27;</span>] = res_df[<span class="string">&#x27;itemsets&#x27;</span>] \</span><br><span class="line">            .apply(<span class="keyword">lambda</span> x: <span class="built_in">frozenset</span>([colname_map[i] <span class="keyword">for</span> i <span class="keyword">in</span> x]))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res_df</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查数据，有错抛出异常</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valid_input_check</span>(<span class="params">df</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">f&quot;<span class="subst">&#123;<span class="built_in">type</span>(df)&#125;</span>&quot;</span> == <span class="string">&quot;&lt;class &#x27;pandas.core.frame.SparseDataFrame&#x27;&gt;&quot;</span>:</span><br><span class="line">        msg = (<span class="string">&quot;SparseDataFrame support has been deprecated in pandas 1.0,&quot;</span></span><br><span class="line">               <span class="string">&quot; and is no longer supported in mlxtend. &quot;</span></span><br><span class="line">               <span class="string">&quot; Please&quot;</span></span><br><span class="line">               <span class="string">&quot; see the pandas migration guide at&quot;</span></span><br><span class="line">               <span class="string">&quot; https://pandas.pydata.org/pandas-docs/&quot;</span></span><br><span class="line">               <span class="string">&quot;stable/user_guide/sparse.html#sparse-data-structures&quot;</span></span><br><span class="line">               <span class="string">&quot; for supporting sparse data in DataFrames.&quot;</span>)</span><br><span class="line">        <span class="keyword">raise</span> TypeError(msg)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> df.size == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(df, <span class="string">&quot;sparse&quot;</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(df.columns[<span class="number">0</span>], <span class="built_in">str</span>) <span class="keyword">and</span> df.columns[<span class="number">0</span>] != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Due to current limitations in Pandas, &#x27;</span></span><br><span class="line">                             <span class="string">&#x27;if the sparse format has integer column names,&#x27;</span></span><br><span class="line">                             <span class="string">&#x27;names, please make sure they either start &#x27;</span></span><br><span class="line">                             <span class="string">&#x27;with `0` or cast them as string column names: &#x27;</span></span><br><span class="line">                             <span class="string">&#x27;`df.columns = [str(i) for i in df.columns`].&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 捷径: 如果所有列均为布尔值，则无需检查</span></span><br><span class="line">    all_bools = df.dtypes.apply(pd.api.types.is_bool_dtype).<span class="built_in">all</span>()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> all_bools:</span><br><span class="line">        <span class="comment"># Pandas比numpy慢得多，因此在Numpy数组上使用np.where</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">hasattr</span>(df, <span class="string">&quot;sparse&quot;</span>):</span><br><span class="line">            <span class="keyword">if</span> df.size == <span class="number">0</span>:</span><br><span class="line">                values = df.values</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                values = df.sparse.to_coo().tocoo().data</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            values = df.values</span><br><span class="line">        idxs = np.where((values != <span class="number">1</span>) &amp; (values != <span class="number">0</span>))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(idxs[<span class="number">0</span>]) &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># idxs具有稀疏数据的1维和密集数据的2维</span></span><br><span class="line">            val = values[<span class="built_in">tuple</span>(loc[<span class="number">0</span>] <span class="keyword">for</span> loc <span class="keyword">in</span> idxs)]</span><br><span class="line">            s = (<span class="string">&#x27;The allowed values for a DataFrame&#x27;</span></span><br><span class="line">                 <span class="string">&#x27; are True, False, 0, 1. Found value %s&#x27;</span> % (val))</span><br><span class="line">            <span class="keyword">raise</span> ValueError(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建FP树</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FPTree</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, rank=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.root = FPNode(<span class="literal">None</span>)</span><br><span class="line">        self.nodes = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line">        self.cond_items = []</span><br><span class="line">        self.rank = rank</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">conditional_tree</span>(<span class="params">self, cond_item, minsup</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        创建并返回以cond_item为条件的self的子树。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        参数</span></span><br><span class="line"><span class="string">        ----------</span></span><br><span class="line"><span class="string">        cond_item : int | str</span></span><br><span class="line"><span class="string">            树（自身）将作为条件的项目。</span></span><br><span class="line"><span class="string">        minsup : int</span></span><br><span class="line"><span class="string">            最低支持阈值。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns</span></span><br><span class="line"><span class="string">        -------</span></span><br><span class="line"><span class="string">        cond_tree : FPtree</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 查找从根节点到项目节点的所有路径</span></span><br><span class="line">        branches = []</span><br><span class="line">        count = collections.defaultdict(<span class="built_in">int</span>)</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> self.nodes[cond_item]:</span><br><span class="line">            branch = node.itempath_from_root()</span><br><span class="line">            branches.append(branch)</span><br><span class="line">            <span class="keyword">for</span> item <span class="keyword">in</span> branch:</span><br><span class="line">                count[item] += node.count</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 定义新的顺序或深层树可能组合爆炸??</span></span><br><span class="line">        items = [item <span class="keyword">for</span> item <span class="keyword">in</span> count <span class="keyword">if</span> count[item] &gt;= minsup]</span><br><span class="line">        items.sort(key=count.get)</span><br><span class="line">        rank = &#123;item: i <span class="keyword">for</span> i, item <span class="keyword">in</span> <span class="built_in">enumerate</span>(items)&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 创建条件树</span></span><br><span class="line">        cond_tree = FPTree(rank)</span><br><span class="line">        <span class="keyword">for</span> idx, branch <span class="keyword">in</span> <span class="built_in">enumerate</span>(branches):</span><br><span class="line">            branch = <span class="built_in">sorted</span>([i <span class="keyword">for</span> i <span class="keyword">in</span> branch <span class="keyword">if</span> i <span class="keyword">in</span> rank],</span><br><span class="line">                            key=rank.get, reverse=<span class="literal">True</span>)</span><br><span class="line">            cond_tree.insert_itemset(branch, self.nodes[cond_item][idx].count)</span><br><span class="line">        cond_tree.cond_items = self.cond_items + [cond_item]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cond_tree</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_itemset</span>(<span class="params">self, itemset, count=<span class="number">1</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        将项目列表插入树中。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        参数</span></span><br><span class="line"><span class="string">        ----------</span></span><br><span class="line"><span class="string">        itemset : list</span></span><br><span class="line"><span class="string">            将插入树中的项目。</span></span><br><span class="line"><span class="string">        count : int</span></span><br><span class="line"><span class="string">            项目集的出现次数。</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.root.count += count</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(itemset) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 尽可能遵循树中的现有路径</span></span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        node = self.root</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> itemset:</span><br><span class="line">            <span class="keyword">if</span> item <span class="keyword">in</span> node.children:</span><br><span class="line">                child = node.children[item]</span><br><span class="line">                child.count += count</span><br><span class="line">                node = child</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 插入所有剩余的项目</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> itemset[index:]:</span><br><span class="line">            child_node = FPNode(item, count, node)</span><br><span class="line">            self.nodes[item].append(child_node)</span><br><span class="line">            node = child_node</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#判断树是否是一条路径</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_path</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.root.children) &gt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> self.nodes:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(self.nodes[i]) &gt; <span class="number">1</span> <span class="keyword">or</span> <span class="built_in">len</span>(self.nodes[i][<span class="number">0</span>].children) &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_status</span>(<span class="params">self, count, colnames</span>):</span></span><br><span class="line">        cond_items = [<span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> self.cond_items]</span><br><span class="line">        <span class="keyword">if</span> colnames:</span><br><span class="line">            cond_items = [<span class="built_in">str</span>(colnames[i]) <span class="keyword">for</span> i <span class="keyword">in</span> self.cond_items]</span><br><span class="line">        cond_items = <span class="string">&quot;, &quot;</span>.join(cond_items)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\r%d itemset(s) from tree conditioned on items (%s)&#x27;</span> %</span><br><span class="line">              (count, cond_items), end=<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#构建节点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FPNode</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, item, count=<span class="number">0</span>, parent=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.item = item</span><br><span class="line">        self.count = count</span><br><span class="line">        self.parent = parent</span><br><span class="line">        self.children = collections.defaultdict(FPNode)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> parent <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            parent.children[item] = self</span><br><span class="line">            </span><br><span class="line">	<span class="comment"># 返回自上而下的项目的顺序，从自身（但不包括）到根节点。</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">itempath_from_root</span>(<span class="params">self</span>):</span></span><br><span class="line">        path = []</span><br><span class="line">        <span class="keyword">if</span> self.item <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> path</span><br><span class="line"></span><br><span class="line">        <span class="comment"># append() 方法用于在列表末尾添加新的对象。</span></span><br><span class="line">        node = self.parent</span><br><span class="line">        <span class="keyword">while</span> node.item <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            path.append(node.item)</span><br><span class="line">            node = node.parent</span><br><span class="line">		<span class="comment"># reverse() 函数用于反向列表中元素。</span></span><br><span class="line">        path.reverse()</span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>association_rules.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> combinations</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">association_rules</span>(<span class="params">df, metric=<span class="string">&quot;confidence&quot;</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                      min_threshold=<span class="number">0.8</span>, support_only=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;生成包括规则“得分”，“可信度”和“提升度”的关联规则的DataFrame</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    -----------</span></span><br><span class="line"><span class="string">    df : pandas DataFrame</span></span><br><span class="line"><span class="string">      [&#x27;support&#x27;, &#x27;itemsets&#x27;]构成的频繁项集</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    metric : string (default: &#x27;confidence&#x27;)</span></span><br><span class="line"><span class="string">      评估规则是否有意义的度量。</span></span><br><span class="line"><span class="string">      **自动设置为 &#x27;support&#x27; if `support_only=True`.**</span></span><br><span class="line"><span class="string">      Otherwise, supported metrics are &#x27;support&#x27;, &#x27;confidence&#x27;, &#x27;lift&#x27;,</span></span><br><span class="line"><span class="string">      &#x27;leverage&#x27;, and &#x27;conviction&#x27;</span></span><br><span class="line"><span class="string">      These metrics are computed as follows:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      - support(A-&gt;C) = support(A+C) [aka &#x27;support&#x27;], range: [0, 1]\n</span></span><br><span class="line"><span class="string">      - confidence(A-&gt;C) = support(A+C) / support(A), range: [0, 1]\n</span></span><br><span class="line"><span class="string">      - lift(A-&gt;C) = confidence(A-&gt;C) / support(C), range: [0, inf]\n</span></span><br><span class="line"><span class="string">      - leverage(A-&gt;C) = support(A-&gt;C) - support(A)*support(C),</span></span><br><span class="line"><span class="string">        range: [-1, 1]\n</span></span><br><span class="line"><span class="string">      - conviction = [1 - support(C)] / [1 - confidence(A-&gt;C)],</span></span><br><span class="line"><span class="string">        range: [0, inf]\n</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    min_threshold : float (default: 0.8)</span></span><br><span class="line"><span class="string">      评估指标的最低阈值，以确定是否有候选规则感兴趣。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    support_only : bool (default: False)</span></span><br><span class="line"><span class="string">      仅计算支持度，并用NaN填充其他指标列。 这在以下情况下有用：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      a) 输入的DataFrame不完整，例如不包含所有规则前提的支持值和结果</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      b) 您只是想加快计算速度，因为您不需要其他指标。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    pandas DataFrame with columns &quot;antecedents&quot; and &quot;consequents&quot;</span></span><br><span class="line"><span class="string">      that store itemsets, plus the scoring metric columns:</span></span><br><span class="line"><span class="string">      &quot;antecedent support&quot;, &quot;consequent support&quot;,</span></span><br><span class="line"><span class="string">      &quot;support&quot;, &quot;confidence&quot;, &quot;lift&quot;,</span></span><br><span class="line"><span class="string">      &quot;leverage&quot;, &quot;conviction&quot;</span></span><br><span class="line"><span class="string">      of all rules for which</span></span><br><span class="line"><span class="string">      metric(rule) &gt;= min_threshold.</span></span><br><span class="line"><span class="string">      Each entry in the &quot;antecedents&quot; and &quot;consequents&quot; columns are</span></span><br><span class="line"><span class="string">      of type `frozenset`, which is a Python built-in type that</span></span><br><span class="line"><span class="string">      behaves similarly to sets except that it is immutable</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># check for mandatory columns</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">all</span>(col <span class="keyword">in</span> df.columns <span class="keyword">for</span> col <span class="keyword">in</span> [<span class="string">&quot;support&quot;</span>, <span class="string">&quot;itemsets&quot;</span>]):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;Dataframe needs to contain the\</span></span><br><span class="line"><span class="string">                         columns &#x27;support&#x27; and &#x27;itemsets&#x27;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">conviction_helper</span>(<span class="params">sAC, sA, sC</span>):</span></span><br><span class="line">        confidence = sAC/sA</span><br><span class="line">        conviction = np.empty(confidence.shape, dtype=<span class="built_in">float</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">len</span>(conviction.shape):</span><br><span class="line">            conviction = conviction[np.newaxis]</span><br><span class="line">            confidence = confidence[np.newaxis]</span><br><span class="line">            sAC = sAC[np.newaxis]</span><br><span class="line">            sA = sA[np.newaxis]</span><br><span class="line">            sC = sC[np.newaxis]</span><br><span class="line">        conviction[:] = np.inf</span><br><span class="line">        conviction[confidence &lt; <span class="number">1.</span>] = ((<span class="number">1.</span> - sC[confidence &lt; <span class="number">1.</span>]) /</span><br><span class="line">                                       (<span class="number">1.</span> - confidence[confidence &lt; <span class="number">1.</span>]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> conviction</span><br><span class="line"></span><br><span class="line">    <span class="comment"># metrics for association rules</span></span><br><span class="line">    metric_dict = &#123;</span><br><span class="line">        <span class="string">&quot;antecedent support&quot;</span>: <span class="keyword">lambda</span> _, sA, __: sA,</span><br><span class="line">        <span class="string">&quot;consequent support&quot;</span>: <span class="keyword">lambda</span> _, __, sC: sC,</span><br><span class="line">        <span class="string">&quot;support&quot;</span>: <span class="keyword">lambda</span> sAC, _, __: sAC,</span><br><span class="line">        <span class="string">&quot;confidence&quot;</span>: <span class="keyword">lambda</span> sAC, sA, _: sAC/sA,</span><br><span class="line">        <span class="string">&quot;lift&quot;</span>: <span class="keyword">lambda</span> sAC, sA, sC: metric_dict[<span class="string">&quot;confidence&quot;</span>](sAC, sA, sC)/sC,</span><br><span class="line">        <span class="string">&quot;leverage&quot;</span>: <span class="keyword">lambda</span> sAC, sA, sC: metric_dict[<span class="string">&quot;support&quot;</span>](</span><br><span class="line">             sAC, sA, sC) - sA*sC,</span><br><span class="line">        <span class="string">&quot;conviction&quot;</span>: <span class="keyword">lambda</span> sAC, sA, sC: conviction_helper(sAC, sA, sC)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    columns_ordered = [<span class="string">&quot;antecedent support&quot;</span>, <span class="string">&quot;consequent support&quot;</span>,</span><br><span class="line">                       <span class="string">&quot;support&quot;</span>,</span><br><span class="line">                       <span class="string">&quot;confidence&quot;</span>, <span class="string">&quot;lift&quot;</span>,</span><br><span class="line">                       <span class="string">&quot;leverage&quot;</span>, <span class="string">&quot;conviction&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># check for metric compliance</span></span><br><span class="line">    <span class="keyword">if</span> support_only:</span><br><span class="line">        metric = <span class="string">&#x27;support&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> metric <span class="keyword">not</span> <span class="keyword">in</span> metric_dict.keys():</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Metric must be &#x27;confidence&#x27; or &#x27;lift&#x27;, got &#x27;&#123;&#125;&#x27;&quot;</span></span><br><span class="line">                             .<span class="built_in">format</span>(metric))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get dict of &#123;frequent itemset&#125; -&gt; support</span></span><br><span class="line">    keys = df[<span class="string">&#x27;itemsets&#x27;</span>].values</span><br><span class="line">    values = df[<span class="string">&#x27;support&#x27;</span>].values</span><br><span class="line">    frozenset_vect = np.vectorize(<span class="keyword">lambda</span> x: <span class="built_in">frozenset</span>(x))</span><br><span class="line">    frequent_items_dict = <span class="built_in">dict</span>(<span class="built_in">zip</span>(frozenset_vect(keys), values))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># prepare buckets to collect frequent rules</span></span><br><span class="line">    rule_antecedents = []</span><br><span class="line">    rule_consequents = []</span><br><span class="line">    rule_supports = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># iterate over all frequent itemsets</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> frequent_items_dict.keys():</span><br><span class="line">        sAC = frequent_items_dict[k]</span><br><span class="line">        <span class="comment"># to find all possible combinations</span></span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(k)-<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="comment"># of antecedent and consequent</span></span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> combinations(k, r=idx):</span><br><span class="line">                antecedent = <span class="built_in">frozenset</span>(c)</span><br><span class="line">                consequent = k.difference(antecedent)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> support_only:</span><br><span class="line">                    <span class="comment"># support doesn&#x27;t need these,</span></span><br><span class="line">                    <span class="comment"># hence, placeholders should suffice</span></span><br><span class="line">                    sA = <span class="literal">None</span></span><br><span class="line">                    sC = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        sA = frequent_items_dict[antecedent]</span><br><span class="line">                        sC = frequent_items_dict[consequent]</span><br><span class="line">                    <span class="keyword">except</span> KeyError <span class="keyword">as</span> e:</span><br><span class="line">                        s = (<span class="built_in">str</span>(e) + <span class="string">&#x27;You are likely getting this error&#x27;</span></span><br><span class="line">                                      <span class="string">&#x27; because the DataFrame is missing &#x27;</span></span><br><span class="line">                                      <span class="string">&#x27; antecedent and/or consequent &#x27;</span></span><br><span class="line">                                      <span class="string">&#x27; information.&#x27;</span></span><br><span class="line">                                      <span class="string">&#x27; You can try using the &#x27;</span></span><br><span class="line">                                      <span class="string">&#x27; `support_only=True` option&#x27;</span>)</span><br><span class="line">                        <span class="keyword">raise</span> KeyError(s)</span><br><span class="line">                    <span class="comment"># check for the threshold</span></span><br><span class="line"></span><br><span class="line">                score = metric_dict[metric](sAC, sA, sC)</span><br><span class="line">                <span class="keyword">if</span> score &gt;= min_threshold:</span><br><span class="line">                    rule_antecedents.append(antecedent)</span><br><span class="line">                    rule_consequents.append(consequent)</span><br><span class="line">                    rule_supports.append([sAC, sA, sC])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># check if frequent rule was generated</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> rule_supports:</span><br><span class="line">        <span class="keyword">return</span> pd.DataFrame(</span><br><span class="line">            columns=[<span class="string">&quot;antecedents&quot;</span>, <span class="string">&quot;consequents&quot;</span>] + columns_ordered)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># generate metrics</span></span><br><span class="line">        rule_supports = np.array(rule_supports).T.astype(<span class="built_in">float</span>)</span><br><span class="line">        df_res = pd.DataFrame(</span><br><span class="line">            data=<span class="built_in">list</span>(<span class="built_in">zip</span>(rule_antecedents, rule_consequents)),</span><br><span class="line">            columns=[<span class="string">&quot;antecedents&quot;</span>, <span class="string">&quot;consequents&quot;</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> support_only:</span><br><span class="line">            sAC = rule_supports[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">for</span> m <span class="keyword">in</span> columns_ordered:</span><br><span class="line">                df_res[m] = np.nan</span><br><span class="line">            df_res[<span class="string">&#x27;support&#x27;</span>] = sAC</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sAC = rule_supports[<span class="number">0</span>]</span><br><span class="line">            sA = rule_supports[<span class="number">1</span>]</span><br><span class="line">            sC = rule_supports[<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">for</span> m <span class="keyword">in</span> columns_ordered:</span><br><span class="line">                df_res[m] = metric_dict[m](sAC, sA, sC)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> df_res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" rel="tag"># 数据挖掘</a>
+              <a href="/tags/FP-growth/" rel="tag"># FP-growth</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/20/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BE%8E%E5%8C%96/" rel="prev" title="关于博客的基础美化">
+      <i class="fa fa-chevron-left"></i> 关于博客的基础美化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81%EF%BC%88WxValidate%E4%BD%BF%E7%94%A8%EF%BC%89/" rel="next" title="微信小程序开发之表单验证（WxValidate使用）">
+      微信小程序开发之表单验证（WxValidate使用） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-FP-growth"><span class="nav-number">1.</span> <span class="nav-text">数据挖掘-FP-growth</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%91%E7%B9%81%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99"><span class="nav-number">1.1.1.</span> <span class="nav-text">频繁模式和关联规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FP-growth%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">FP-growth算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.2.</span> <span class="nav-text">二、软件环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">三、基本思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">1.4.</span> <span class="nav-text">四、算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FP-growth%E7%AE%80%E8%A6%81%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.4.1.</span> <span class="nav-text">FP-growth简要步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%96%E6%8E%98%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99"><span class="nav-number">1.4.2.</span> <span class="nav-text">挖掘关联规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.5.</span> <span class="nav-text">五、实验步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Column-Dtype"><span class="nav-number">2.</span> <span class="nav-text">Column  Dtype</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7ID%EF%BC%8C%E5%95%86%E5%93%81ID%EF%BC%8C%E5%95%86%E5%93%81%E7%B1%BB%E7%9B%AEID%EF%BC%8C%E8%A1%8C%E4%B8%BA%E7%B1%BB%E5%9E%8B%EF%BC%8C%E6%97%B6%E9%97%B4%E6%88%B3"><span class="nav-number">3.</span> <span class="nav-text">用户ID，商品ID，商品类目ID，行为类型，时间戳</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E6%97%B6%E9%97%B4%E6%88%B3%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F-%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE%E6%8C%89%E7%A7%92%E8%AE%A1%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">将时间戳转换为时间格式,读入数据按秒计算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1%E6%AF%8F%E4%B8%AA%E6%97%B6%E9%97%B4%E6%AE%B5%E5%8F%91%E7%94%9F%E7%9A%84%E5%90%84%E7%A7%8D%E8%A1%8C%E4%B8%BA"><span class="nav-number">5.</span> <span class="nav-text">分组统计每个时间段发生的各种行为</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E5%85%B7%E4%BD%93%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%97%B6%E9%97%B4%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%8F%AA%E7%9C%8B%E7%94%A8%E6%88%B7%E5%AF%B9%E6%9F%90%E7%B1%BB%E5%95%86%E5%93%81%E7%9A%84%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE"><span class="nav-number">6.</span> <span class="nav-text">去除具体商品信息，时间信息，只看用户对某类商品的操作数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%88%E8%BD%AC%E6%8D%A2DataFrame%E6%95%B0%E6%8D%AE%E4%B8%BA%E5%8C%85%E5%90%AB%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%97%E8%A1%A8%EF%BC%8C%E5%90%8E%E7%BB%AD%E6%8C%96%E6%8E%98%E6%97%B6%E5%86%8D%E8%BD%AC%E6%8D%A2%E5%9B%9E%E6%9D%A5"><span class="nav-number">7.</span> <span class="nav-text">先转换DataFrame数据为包含数据的列表，后续挖掘时再转换回来</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98%E6%B8%85%E6%B4%97%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">8.</span> <span class="nav-text">保存清洗后的数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E9%A2%84%E5%A4%84%E7%90%86%E5%A5%BD%E7%9A%84%E6%95%B0%E6%8D%AE%E2%80%9Ctransactions-json%E2%80%9D"><span class="nav-number">9.</span> <span class="nav-text">导入预处理好的数据“transactions.json”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%BD%AE%E4%BF%A1%E5%BA%A6-gt-0-1%E7%9A%84%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99%EF%BC%8C%E5%B9%B6%E6%8C%89%E6%8F%90%E5%8D%87%E5%BA%A6%E5%80%92%E5%BA%8F%E6%8E%92%E5%88%97"><span class="nav-number">10.</span> <span class="nav-text">获取置信度&gt;&#x3D;0.1的关联规则，并按提升度倒序排列</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">孙云哲</p>
+  <div class="site-description" itemprop="description">记录我的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">孙云哲</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,138 +1,971 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="记录我的生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mr.sun&#39;s notebook">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:site_name" content="Mr.sun&#39;s notebook">
+<meta property="og:description" content="记录我的生活">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="孙云哲">
 <meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Mr.sun's notebook</title>
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mr.sun's notebook</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+          <div class="content index posts-expand">
+            
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4/">
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-my-first-blog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/03/23/my-first-blog/" class="article-date">
-  <time class="dt-published" datetime="2021-03-23T06:43:10.000Z" itemprop="datePublished">2021-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/23/my-first-blog/">my first blog</a>
-    </h1>
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
 
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4/" class="post-title-link" itemprop="url">虚拟机不能复制粘贴</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 21:55:54" itemprop="dateModified" datetime="2020-04-28T21:55:54+08:00">2020-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B8%A9%E5%9D%91/" itemprop="url" rel="index"><span itemprop="name">踩坑</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h1 id="大博客从0到1"><a href="#大博客从0到1" class="headerlink" title="大博客从0到1"></a>大博客从0到1</h1><h2 id="22"><a href="#22" class="headerlink" title="22"></a>22</h2><p>[toc]</p>
+          <h1 id="虚拟机不能复制粘贴"><a href="#虚拟机不能复制粘贴" class="headerlink" title="虚拟机不能复制粘贴"></a>虚拟机不能复制粘贴</h1><p>经检查是VM tools的问题，右键虚拟机看到安装VM tools 按钮是灰色的，要在虚拟机设置里把CD/DVD CD/DVD(2)和软盘设为自动检测 重启虚拟机</p>
+<p>这时可以点安装VM tools，点击后会在桌面产生一个光盘镜像，点击后把安装包复制到home目录下</p>
+<p>解压安装文件<code>tar - -zxvf </code></p>
+<p>进入目录<code>cd vmware-tools-distrib</code> </p>
+<p>执行安装<code>./vmware-install.pl</code></p>
+<p>重启虚拟机，可以互相复制粘贴</p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/23/my-first-blog/" data-id="ckmlr8hwi0001d0vx6eutewt5" data-title="my first blog" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/03/23/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-03-23T06:36:54.813Z" itemprop="datePublished">2021-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/23/hello-world/">Hello World</a>
-    </h1>
+  
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/%E5%B0%8F%E7%A8%8B%E5%BA%8FgetLocation%E5%AE%9A%E4%BD%8D%E4%B8%8D%E5%87%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/%E5%B0%8F%E7%A8%8B%E5%BA%8FgetLocation%E5%AE%9A%E4%BD%8D%E4%B8%8D%E5%87%86/" class="post-title-link" itemprop="url">小程序getLocation定位不准</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 21:56:50" itemprop="dateModified" datetime="2020-04-28T21:56:50+08:00">2020-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B8%A9%E5%9D%91/" itemprop="url" rel="index"><span itemprop="name">踩坑</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+          <h1 id="小程序getLocation定位不准"><a href="#小程序getLocation定位不准" class="headerlink" title="小程序getLocation定位不准"></a>小程序getLocation定位不准</h1><p>来自官方文档</p>
+<blockquote>
+<p>注意</p>
+<ul>
+<li>工具中定位模拟使用IP定位，可能会有一定误差。且工具目前仅支持 gcj02 坐标。</li>
+<li>使用第三方服务进行逆地址解析时，请确认第三方服务默认的坐标系，正确进行坐标转换。</li>
+</ul>
+</blockquote>
+<p>​        在开发工具里调试会发现地图里显示的是当地政府的地址，就是因为使用IP定位，而在手机端查看会有很大误差，暂时把type改成gcj02并用“真机调试”可以精确定位。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/%E5%B0%86Pandas%E4%B8%AD%E7%9A%84DataFrame%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%88%90Numpy%E4%B8%ADarray%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/%E5%B0%86Pandas%E4%B8%AD%E7%9A%84DataFrame%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%88%90Numpy%E4%B8%ADarray%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">将Pandas中的DataFrame类型转换成Numpy中array类型的三种方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 21:50:58" itemprop="dateModified" datetime="2020-09-08T21:50:58+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30163461/article/details/80080529">https://blog.csdn.net/qq_30163461/article/details/80080529</a> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/%E5%9F%BA%E4%BA%8EBOA%E6%90%AD%E5%BB%BA%E5%92%8C%E7%A7%BB%E6%A4%8D%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/%E5%9F%BA%E4%BA%8EBOA%E6%90%AD%E5%BB%BA%E5%92%8C%E7%A7%BB%E6%A4%8D%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">基于BOA搭建及移植web服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 21:57:40" itemprop="dateModified" datetime="2020-04-28T21:57:40+08:00">2020-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基于BOA搭建及移植web服务器"><a href="#基于BOA搭建及移植web服务器" class="headerlink" title="基于BOA搭建及移植web服务器"></a>基于BOA搭建及移植web服务器</h1><p>​        这学期的硬件课设选择了web服务器。在web服务器中，较为常用的是tomcat，nigix。但是这种服务器比较大，占用资源比较多，并不适合于嵌入式设备中。而boa是一个很轻便的web服务器，部署简单，占用资源少，支持多种语言。 </p>
+<h2 id="一、下载及配置BOA服务器"><a href="#一、下载及配置BOA服务器" class="headerlink" title="一、下载及配置BOA服务器"></a>一、下载及配置BOA服务器</h2><h3 id="1-下载安装boa服务器"><a href="#1-下载安装boa服务器" class="headerlink" title="1. 下载安装boa服务器"></a>1. 下载安装boa服务器</h3><p> ubuntu下操作：首先在<a target="_blank" rel="noopener" href="http://www.boa.org/">http://www.boa.org</a>下载BOA服务器的源码：boa-0.94.13.tar.gz版本为0.94.13。</p>
+<p>对其进行解压：</p>
+<p><code>$ tar xzf boa-0.94.13.tar.gz   </code>               </p>
+<p>还要安装必要的工具bison，flex。否则会出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make: yacc：命令未找到</span><br><span class="line">make: *** [y.tab.c] 错误 127。</span><br></pre></td></tr></table></figure>
+
+<p><code>$ sudo apt-get install bison flex</code></p>
+<p>打开解压出的文件夹</p>
+<h3 id="2-修改相关配置文件"><a href="#2-修改相关配置文件" class="headerlink" title="2. 修改相关配置文件"></a>2. 修改相关配置文件</h3><p><strong>修改src/compat.h文件:</strong></p>
+<p>打开compat.h找到这一条语句：</p>
+<p><code>#define TIMEZONE_OFFSET(foo) foo##-&gt;tm_gmtoff</code></p>
+<p>将其修改为：</p>
+<p><code>#define TIMEZONE_OFFSET(foo) (foo)-&gt;tm_gmtoff </code></p>
+<p>这是由于本机所使用的交叉编译版本对语句用法的不同。</p>
+<p><strong>修改 src/log.c文件。</strong></p>
+<p>打开log.c注释掉下列语句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*if (dup2(error_log, STDERR_FILENO) == -1) &#123;</span></span><br><span class="line"><span class="comment">  		DIE(&quot;unable to dup2 the error log&quot;);</span></span><br><span class="line"><span class="comment">  &#125;*/</span></span><br></pre></td></tr></table></figure>
+
+<p>否则会出现错误：</p>
+<p><code>log.c:73 unable to dup2 the error log:bad file descriptor。</code></p>
+<p><strong>修改src/boa.c文件。</strong></p>
+<p>打开src/boa.c注释掉下面两句话：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">       <span class="keyword">if</span> (passwdbuf == <span class="literal">NULL</span>) &#123;</span><br><span class="line">       DIE(”getpwuid”);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (initgroups(passwdbuf-&gt;pw_name, passwdbuf-&gt;pw_gid) == <span class="number">-1</span>) &#123;</span><br><span class="line">       DIE(”initgroups”);</span><br><span class="line">       &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>否则会出现错误：</p>
+<p><code>boa.c:211 - getpwuid: No such file or directory。</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">     <span class="keyword">if</span> (setuid(<span class="number">0</span>) != <span class="number">-1</span>) &#123;</span><br><span class="line">             DIE(”icky Linux kernel bug!”);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>否则会出现问题：</p>
+<p><code>boa.c:228 - icky Linux kernel bug!: No such file or directory。</code></p>
+<h3 id="3-生成boa可执行文件"><a href="#3-生成boa可执行文件" class="headerlink" title="3. 生成boa可执行文件"></a>3. 生成boa可执行文件</h3><p>进入相关目录生成makefile文件：</p>
+<p> <code>$ cd boa-0.94.13/src</code><br> <code>$ ./configure</code></p>
+<p><strong>修改makefile文件。</strong></p>
+<p><code> $vim Makefile</code>  </p>
+<p>修改<code>CC ＝ gcc</code> 为 <code>CC ＝ arm-linux-gnueabihf-gcc</code></p>
+<p>修改<code>CPP ＝ gcc -E</code> 为 <code>CPP ＝ arm-linux-gnueabihf-gcc  -E</code></p>
+<p>接下来进行编译。</p>
+<p><code> $ make</code></p>
+<p>然后为刚刚生成的二进制文件boa瘦身删除其调试信息。</p>
+<p><code>$ arm-linux-gnueabihf-strip  boa</code></p>
+<h3 id="4-修改配置"><a href="#4-修改配置" class="headerlink" title="4. 修改配置"></a>4. 修改配置</h3><p>找到配置文件boa.conf并进行如下修改：</p>
+<p> <code>$ sudo vi boa.conf</code></p>
+<p><strong>(1)对Group的修改</strong></p>
+<p>将<code>Group nogroup</code>（这是修改程序所属的组）。</p>
+<p>修改为 <code>Group 0</code></p>
+<p><strong>(2)对user的修改</strong></p>
+<p>将<code>User nobody</code>（这里是修改程序所属的用户）。</p>
+<p>修改为 <code>User 0</code></p>
+<p><strong>(3)对ScriptAlias的修改</strong></p>
+<p>将<code>ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/</code></p>
+<p>修改为 <code>ScriptAlias /cgi-bin/ /www/cgi-bin/</code>（这里是配置服务器读取cgi程序的目录，需要在SD卡中同样的位置建立同样的目录）。</p>
+<p><strong>(4)对DoucmentRoot的修改</strong></p>
+<p>将<code>DoucmentRoot /var/www </code></p>
+<p>修改为<code>DoucmentRoot /www</code>（这里是服务器初始网页放置的位置同样需要在SD卡同样的位置建立同样的文件夹并将名为index.html的网页放置在其中）。</p>
+<p><strong>(5)对ServerName的修改</strong></p>
+<p>将<code>#ServerName [www.your.org.here](http://www.your.org.here)</code></p>
+<p>修改为 <code>ServerName www.your.org.here</code></p>
+<p>否则会出现错误“gethostbyname::No such file or directory”</p>
+<p><strong>(6)对AccessLog修改</strong></p>
+<p>将AccessLog /var/log/boa/access_log（在SD卡相应位置建立同名文件夹以存放日志文件，否则提示找不到文件夹，这里不用log功能就注释掉）。</p>
+<p>修改为#AccessLog /var/log/boa/access_log</p>
+<p>否则会出现错误提示：“unable to dup2 the error log: Bad file descriptor”</p>
+<p>在目标板(这里使用树莓派)上需要做的配置：</p>
+<p>创建目录/etc/boa并且把boa 和 boa.conf拷贝到这个目录下：</p>
+<p>先把文件从虚拟机中拖拽到物理机上，再通过vnc viewer的文件传输功能下载到板子上。用户权限无法查看根目录的文件，使用root权限进行下面操作。</p>
+<p><code>$ mkdir /etc/boa </code></p>
+<p><code>$ cp boa.conf /rootfs/etc/boa</code></p>
+<p>创建HTML文档的主目录/www：</p>
+<p> <code>$ mkdir /www</code></p>
+<p>创建CGI脚本所在的目录 /www/cgi-bin：</p>
+<p> <code>$ mkdir /www/cgi-bin</code>   </p>
+<p>这样boa的服务器基础就搭建好了。</p>
+<h2 id="二、-测试服务器动态网页功能"><a href="#二、-测试服务器动态网页功能" class="headerlink" title="二、  测试服务器动态网页功能"></a>二、  测试服务器动态网页功能</h2><p>​        到此为止服务器已经搭建完成了，接下来就要测试服务器是否能够成功运行动态网页了，为了顺利完成测试，首先要做的是让目标板和主机能够通信。</p>
+<p>​        用交叉网线连接主机和开发板的配置较复杂，本地连接要使主机和开发板在同一网段下。折腾失败过一次没再研究。这里使用笔记本和树莓派wifi连在同一路由器下可直接连通，用手机热点效果一样，ping路由器后台查到的ip即可。ping通就可以通信了</p>
+<p>接下来要做的就是编译一个cgi程序，因为只是测试用所以就用最简单的hello world来测试：</p>
+<p>首先编写hello world代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span> </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Content-type:text/html\n\n&quot;</span>);  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;&lt;html&gt;\n&quot;</span>);  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;&lt;head&gt;&lt;title&gt;cgiCHello.c&lt;/title&gt;&lt;/head&gt;\n&quot;</span>);  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;&lt;body&gt;\n&quot;</span>);  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;&lt;h1&gt;Hello World! &lt;font color=\&quot;blue\&quot;&gt;\&quot;CGI C\&quot;&lt;/font&gt; &lt;/h1&gt;\n&quot;</span>);  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;&lt;/body&gt;\n&quot;</span>);  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;&lt;/html&gt;\n&quot;</span>);  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>编写完成后将文本文档命名为：hello.c。然后再对其进行编译，使之成为一个cgi文件：</p>
+<p><code>arm-linux-gnueabihf-gcc  -o  hello.cgi hello.c </code></p>
+<p><strong>安装交叉编译器</strong></p>
+<p>这里才发现自己的ubuntu没有安装交叉编译器，先在<a target="_blank" rel="noopener" href="http://releases.linaro.org/components/toolchain/binaries/6.2-2016.11/arm-linux-gnueabihf/">arm-linux-gnueabihf官网</a> 下载压缩包</p>
+<p>(1) 拷贝gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf.tar到ubuntu目录下</p>
+<p>(2) 在/usr/local/下建立arm文件夹    <code>mkdir /usr/local/arm  </code></p>
+<p>(3) 进入gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf.tar所在的目录，将gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf.tar解压到/usr/local/arm/下   </p>
+<p><code>tar xvf -C/usr/local/arm/</code></p>
+<p>(4) 添加环境变量  <code>vim /etc/profile</code></p>
+<p>在末尾添加 </p>
+<p><code>export PATH=$PATH:/usr/local/arm/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin</code></p>
+<p>(5)  <code>source /etc/profile</code> 使新添加的环境变量生效</p>
+<p>(6) 查看是否安装成功</p>
+<p>终端输入<code>arm-linux-gnueabihf-gcc -v</code>出现一系列说明，末尾的版本号与安装版本相同则安装成功</p>
+<p>代码的编辑编译可以在树莓派上进行，完全版系统镜像自带gcc</p>
+<p><code>gcc -o hello.cgi hello.c</code></p>
+<p>在当前文件夹下便会生成hello.cgi，为这个文件添加权限，使其可执行：</p>
+<p><code>chmod +X hello.cgi</code></p>
+<p>将这个文件移动到服务器中的文件夹：</p>
+<p><code>cp hello.cgi /www/cgi-bin/</code></p>
+<p>现在可以打开浏览器在地址栏中输入 <strong>板子ip/cgi-bin/hello.cgi</strong> 出现下图所示页面说明cgi功能可以使用，可以进行下一步工作了：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2019/11/b4e2e8f8d899253f.png" alt="cgihello"></p>
+<center>动态网页测试</center>
+# 实现嵌入式web远程控制功能
+
+<p>​        目前为止，服务器的搭建以及数据的传输等基本功能已经实现了，为了能够实现嵌入式web远程控制的功能，就需要让控制者进入到其主页来进行编辑提交，所以在这个页面中就要让控制者能够对目标板进行各种控制和修改，而html只是单方向的，不能进行信息的交互，这时候就需要cgi程序来完成交互的任务。</p>
+<h2 id="一、静态网页的配置"><a href="#一、静态网页的配置" class="headerlink" title="一、静态网页的配置"></a>一、静态网页的配置</h2><p>服务器的文件结构：/www为服务器根目录，存放index.html是服务器的首页，cgi-bin文件夹存放各种cgi程序和sh脚本，下面每个编译好的.cgi和.sh文件都cp到这个目录下。</p>
+<p>html文件的格式：<br>编辑index.html，文件的内容如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">	    <span class="function"><span class="keyword">function</span> <span class="title">MM_jumpMenu</span>(<span class="params">targ,selObj,restore</span>)</span>&#123; <span class="comment">//v3.0</span></span></span><br><span class="line"><span class="javascript">		<span class="built_in">eval</span>(targ+<span class="string">&quot;.location=&#x27;&quot;</span>+selObj.options[selObj.selectedIndex].value+<span class="string">&quot;&#x27;&quot;</span>);</span></span><br><span class="line">		if (restore) selObj.selectedIndex=0;</span><br><span class="line">	    &#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="symbol">&amp;nbsp;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>                                            </span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="symbol">&amp;nbsp;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;form1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span> <span class="attr">method</span>=<span class="string">&quot;get&quot;</span> <span class="attr">action</span>=<span class="string">&quot;/cgi-bin/reboot.cgi&quot;</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重启&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://192.168.43.133/cgi-bin/hello.cgi#tips&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>hello~<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/cgi-bin/Changeip.cgi&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;var_ip&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span>　</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>每个标记都是一一对应的。每个网页文件都是以<html>开始和以</html>结束。<title>与</title>之间的内容是网页的标题。会显示在浏览器的标题栏上。<body>与</body>之间放的是网页内容。</p>
+</blockquote>
+<p>显示出的效果如下：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2019/11/6d68e263bace4c21.png" alt="index"></p>
+<center>index.html</center>
+`<p>&nbsp;</p>`   语句能够实现空行功能，以便使网页整体结构不会过于紧凑，
+`<a href="http://192.168.43.133/cgi-bin/hello.cgi#tips" target="_blank">hello~</a><pre>`
+
+<p>该语句表示了在网页中加入一个超链接，该链接指向<a target="_blank" rel="noopener" href="http://192.168.43.133/cgi-bin/hello.cgi">http://192.168.43.133/cgi-bin/hello.cgi</a> 显示为hello用于测试服务器的cgi功能。</p>
+<p>  点击hello~之后服务器跳转，页面显示的内容：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2019/11/b4e2e8f8d899253f.png" alt="cgihello"></p>
+<center>超链接hello.cgi</center>
+## 二、动态网页的配置
+
+<h3 id="1-HTML表单"><a href="#1-HTML表单" class="headerlink" title="1  HTML表单"></a>1  HTML表单</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/cgi-bin/Changeip.cgi&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span> /表单动作指向Changeip.cgi 传送方式为post</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;var_ip&quot;</span>&gt;</span>        			/插入文本框，赋值名为var_ip</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> &gt;</span>             					/插入提交按钮 </span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span>                   							/表单结束</span><br></pre></td></tr></table></figure>
+<p>上面的语句表示了以post的方式将表单内容发送给Changeip.cgi，同时定义了一个按键和一个输入文本框，按钮的属性为提交按钮，文本框内的值为var_ip的值。</p>
+<h3 id="2-cgi功能的实现"><a href="#2-cgi功能的实现" class="headerlink" title="2  cgi功能的实现"></a>2  cgi功能的实现</h3><p>​        为了能够实现更改ip的的功能就需要写一个shell脚本调用配置文件并对其进行修改，然而修改这个文件需要root权限，可是单单给shell脚本加上权限并不能达到目的，这时就需要借用一个c程序来提升其权限：</p>
+<p>Changeip.c:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Content-type: text/html\n\n&quot;</span>); 	<span class="comment">//输出类型</span></span><br><span class="line">    <span class="keyword">uid_t</span> uid ,euid;</span><br><span class="line">    uid = getuid() ;</span><br><span class="line">    euid = geteuid();</span><br><span class="line">    <span class="keyword">if</span>(setreuid(euid, uid))</span><br><span class="line">	perror(<span class="string">&quot;setreuid&quot;</span>);						<span class="comment">//交换这两个id</span></span><br><span class="line">    system(<span class="string">&quot;/www/cgi-bin/Changeip.sh&quot;</span>);		<span class="comment">//调用程序</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个c程序所做的便是提升changip.sh脚本的权限。当在网页中输入一个ip地址后，进入changip.sh</p>
+<p>将通过awk截取变量$f 以-为分隔符的第二个域($2)的值，并赋值给var_ip这个变量：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var_ip=`<span class="built_in">echo</span> <span class="variable">$QUERY_STRING</span> | awk -F <span class="string">&#x27;&amp;&#x27;</span> <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> | awk -F <span class="string">&#x27;=&#x27;</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span><br></pre></td></tr></table></figure>
+
+<p>因为采用wlan连接，设置静态ip地址不是在interfaces里，而是在/etc/dhcpcd.conf中更改。</p>
+<p>将得到的var_ip这个值写入/etc/dhcpcd.conf：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eth0_cfg=<span class="string">&quot;/etc/dhcpcd.conf&quot;</span></span><br><span class="line">sed -i <span class="string">&#x27;/^static ip_address=/d&#x27;</span>  <span class="variable">$eth0_cfg</span>			<span class="comment">#删除匹配到ip的行</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;static ip_address=<span class="variable">$var_ip</span>/24&quot;</span>     &gt;&gt; <span class="variable">$eth0_cfg</span></span><br></pre></td></tr></table></figure>
+<p>这样就完成了ip的更改</p>
+<p>Changip.sh:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$REQUEST_METHOD</span>  = <span class="string">&quot;POST&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    QUERY_STRING=`cat /dev/stdin`</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Content-type:text/html&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line">eth0_cfg=<span class="string">&quot;/etc/dhcpcd.conf&quot;</span></span><br><span class="line"></span><br><span class="line">var_ip=`<span class="built_in">echo</span> <span class="variable">$QUERY_STRING</span> | awk -F <span class="string">&#x27;&amp;&#x27;</span> <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> | awk -F <span class="string">&#x27;=&#x27;</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span><br><span class="line">sed -i <span class="string">&#x27;/^static ip_address=/d&#x27;</span>  <span class="variable">$eth0_cfg</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;static ip_address=<span class="variable">$var_ip</span>/24&quot;</span>     &gt;&gt; <span class="variable">$eth0_cfg</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p> 使开发板重启功能也是通过cgi调用sh脚本实现。</p>
+<p>仿照Changeip编写如下代码：</p>
+<p>reboot.c:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Content-type: text/html\n\n&quot;</span>); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&lt;html&gt;\n&quot;</span>);    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&lt;head&gt;&lt;title&gt;reboot&lt;/title&gt;&lt;/head&gt;\n&quot;</span>);    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&lt;body&gt;\n&quot;</span>);    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&lt;h1&gt;The system is going to reboot .......\n\n  &lt;/h1&gt;\n&quot;</span>);    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&lt;/body&gt;\n&quot;</span>);    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&lt;/html&gt;\n&quot;</span>);   </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">uid_t</span> uid ,euid;</span><br><span class="line">    uid = getuid() ;</span><br><span class="line">    euid = geteuid();</span><br><span class="line">    <span class="keyword">if</span>(setreuid(euid, uid))</span><br><span class="line">        perror(<span class="string">&quot;setreuid&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;/www/cgi-bin/reboot.sh&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>reboot.sh:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Content-type:text/html&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;系统将要重启！&quot;</span></span><br><span class="line">/sbin/shutdown -r now </span><br></pre></td></tr></table></figure>
+
+<p>经过后面的测试shell脚本可以使用，前提是需要使用命令chmod 777 reboot.sh改变其权限。</p>
+<p>(这里修改为u+s无效，待+6解)</p>
+<p>编译Change.c和reboot.c，将.cgi和.sh文件都cp到/www/cgi-bin下</p>
+<h2 id="三、测试远程控制功能"><a href="#三、测试远程控制功能" class="headerlink" title="三、测试远程控制功能"></a>三、测试远程控制功能</h2><h3 id="1-查看boa服务"><a href="#1-查看boa服务" class="headerlink" title="1.查看boa服务"></a>1.查看boa服务</h3><p>boa配置好后一般随开机启动</p>
+<p><code>ps -aux | grep boa</code>可以查看boa的进程号，kill进程号关闭，<code>boa</code>命令重启。</p>
+<p> <img src="https://ftp.bmp.ovh/imgs/2019/11/4d22c1883ce9c3b5.png" alt="boa"> </p>
+<center>启动boa服务器
+
+<p>在主机浏览器地址栏内输入开发板服务器的ip（192.168.43.133）这样就进入了服务器的主页，主页的内容很直接，两个按钮，一个超链接，一个文本框：</p>
+<img src = 'https://ftp.bmp.ovh/imgs/2019/11/6d68e263bace4c21.png' />
+
+
+
+<center>boa服务器主页
+
+<h3 id="2-测试修改ip"><a href="#2-测试修改ip" class="headerlink" title="2.测试修改ip"></a>2.测试修改ip</h3><p>首先设置板子的静态ip</p>
+<p><code>vim /etc/dhcpcd.conf</code>  在文件末尾添加静态地址配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface wlan0</span><br><span class="line">static routers&#x3D;192.168.1.1</span><br><span class="line">static domain_name_servers&#x3D;114.114.114.114 8.8.8.8</span><br><span class="line">static ip_address&#x3D;192.168.43.133&#x2F;24</span><br></pre></td></tr></table></figure>
+
+<p>重启wifi网卡</p>
+<p> <code>wpa_cli -i wlan0 reconfigure</code></p>
+<p>查看开发板当前ip地址，输入<code>ifconfig wlan0</code>或<code>ip addr show wlan0</code>命令后可以看到板子当前的连接，硬件地址，ipv4和ipv6地址，广播地址，以及子网掩码等。</p>
+<p> <img src="https://ftp.bmp.ovh/imgs/2019/11/85b9861bb5d97e32.png" alt="ifconfig"> </p>
+<center>当前ip地址
+
+<p>在网页文本框输入想要修改的ip地址点击提交，正常弹出网页后<code>ifconfig wlan0</code>查看板子ip，这时并没有更改，查看dhcpcd.conf文件，发现已经修改成功，因为更改conf文件后要再次重启wifi网卡，发现远程登陆断开，以新ip登陆，这时查看ip已经改变为刚才输入的地址了。</p>
+<h3 id="3-测试重启功能"><a href="#3-测试重启功能" class="headerlink" title="3.测试重启功能"></a>3.测试重启功能</h3><p>在网页上点击重启按钮，弹出窗口，远程连接断开，板子灯表示正在重启，等待一会恢复连接。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    通过这次课设第一次搭建服务器，了解服务器文件的结构和运行方式，学到了更多linux下的命令，遇到问题多查官方文档和其他个人博客，踩到的雷前人一般都有解决方法。对于boa和cgi程序有了初步了解，尤其是权限问题，cgi和sh脚本经常提高权限才能正常运行。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/%E5%88%9D%E8%AF%86%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/%E5%88%9D%E8%AF%86%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">初识树莓派记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 21:57:56" itemprop="dateModified" datetime="2020-04-28T21:57:56+08:00">2020-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="初识树莓派记录"><a href="#初识树莓派记录" class="headerlink" title="初识树莓派记录"></a>初识树莓派记录</h1><p>​        这个学期有一个智能硬件系统开发综合实践，从暑假看到树莓派4发布就想搞一个玩，这次正好有机会就买了一个，淘宝购入2g无卡版，包含板子、第三方5V3A电源、外壳和一根micro-HDMI转HDMI线。另配一张64g存储卡。</p>
+<h2 id="一、开箱"><a href="#一、开箱" class="headerlink" title="一、开箱"></a>一、开箱</h2><p>贴散热片，按照卖家给的教程安装外壳，烧系统，添加SSH和WiFi配置文件，putty登录开启VNC，设置分辨率，否则无法连接VNC，通过路由器后台查看板子IP，VNC Viewer登录进图形界面。卖家提供的资料如下</p>
+<p>树莓派4B带风扇外壳安装视频链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1iowbKNnrdztEK2sj562peA">https://pan.baidu.com/s/1iowbKNnrdztEK2sj562peA</a> 提取码：pshs</p>
+<p>树莓派4系统烧入及WIFI配置方法说明： <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1knP0QzTLYMBvj_bLE7M1Eg">https://pan.baidu.com/s/1knP0QzTLYMBvj_bLE7M1Eg</a> 提取码：38ta</p>
+<h2 id="二、初始配置"><a href="#二、初始配置" class="headerlink" title="二、初始配置"></a>二、初始配置</h2><p>安装的系统是基于Debian的树莓派官方系统，Linux常用命令通用，注意用户权限。</p>
+<h3 id="1-更换国内镜像"><a href="#1-更换国内镜像" class="headerlink" title="1. 更换国内镜像"></a>1. 更换国内镜像</h3><p>默认镜像源在国外，安装软件下载很慢，经常碰到ip超时，一查是伦敦的ip，换到国内（这里采用清华大学的源）就好很多。</p>
+<p><strong>1.1. 编辑sources.list</strong></p>
+<p>打开终端 输入</p>
+<p><code>sudo nano /etc/apt/sources.list</code></p>
+<p>用#注释或直接删除原有的内容，新增两条：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;raspbian&#x2F;raspbian&#x2F; stretch main contrib non-free rpi</span><br><span class="line">#deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;raspbian&#x2F;raspbian&#x2F; stretch main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>ctrl+x 保存并退出。</p>
+<p><strong>1.2编辑raspi.list</strong><br><code>sudo nano /etc/apt/sources.list.d/raspi.list</code></p>
+<p>用#注释或直接删除原有的内容，新增两条：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirror.tuna.tsinghua.edu.cn&#x2F;raspberrypi&#x2F; stretch main ui</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirror.tuna.tsinghua.edu.cn&#x2F;raspberrypi&#x2F; stretch main ui</span><br></pre></td></tr></table></figure>
+<p>ctrl+x 保存并退出。</p>
+<p>更新软件源列表：<br><code>sudo apt-get update</code></p>
+<h3 id="2-重新安装vim"><a href="#2-重新安装vim" class="headerlink" title="2. 重新安装vim"></a>2. 重新安装vim</h3><p>树莓派自带的vim很不好用，卸掉重装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove vim-common</span><br><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>安装成功后可以添加一些功能</p>
+<p><code>sudo vi /etc/vim/vimrc</code></p>
+<p>在文件尾部加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set nu 			#显示行号</span><br><span class="line">syntax on 		#语法高亮</span><br><span class="line">set tabstop&#x3D;4	#tab退四格</span><br></pre></td></tr></table></figure>
+
+<p>这里加注释会使每次打开vim报警告，不用写。vim的复制粘贴为y和p，在命令模式下选中待操作文本按y即复制，p即粘贴。</p>
+<h3 id="3-安装中文输入法"><a href="#3-安装中文输入法" class="headerlink" title="3.安装中文输入法"></a>3.安装中文输入法</h3><p><code>sudo apt-get install scim-pinyin</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/ubuntu%E5%AE%89%E8%A3%85Docker%E4%B8%8B%E8%BD%BD%E5%A4%AA%E6%85%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/ubuntu%E5%AE%89%E8%A3%85Docker%E4%B8%8B%E8%BD%BD%E5%A4%AA%E6%85%A2/" class="post-title-link" itemprop="url">ubuntu安装Docker下载太慢</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 21:59:06" itemprop="dateModified" datetime="2020-04-28T21:59:06+08:00">2020-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B8%A9%E5%9D%91/" itemprop="url" rel="index"><span itemprop="name">踩坑</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Ubuntu安装Docker下载太慢"><a href="#Ubuntu安装Docker下载太慢" class="headerlink" title="Ubuntu安装Docker下载太慢"></a>Ubuntu安装Docker下载太慢</h1><p>跟着菜鸟教程和docker官网的步骤，到</p>
+<p><code>sudo apt-get install docker-ce docker-ce-cli containerd.io</code></p>
+<p>这一步时要访问美国官方的库apt很慢</p>
+<p>首先尝试了虚拟机共享主机的SSR，虚拟机设为NAT连接，在物理机上查询虚拟机ip，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">以太网适配器 VMware Network Adapter VMnet8:</span><br><span class="line"></span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::9c74:ea9b:8f49:1e96%22</span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 192.168.199.1</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   默认网关. . . . . . . . . . . . . :</span><br></pre></td></tr></table></figure>
+
+<p>ssr–&gt;选项设置–&gt;本地代理–&gt;勾选允许来自局域网的连接</p>
+<p>Ubuntu下设置–&gt;网络–&gt;网络代理  手动，IP填写上面查到的地址，端口1080</p>
+<p>实现了ubuntu下的ssr，但apt还是很慢，看到apt要访问的地址如下，在浏览器中访问</p>
+<p><code>获取:1 https://download.docker.com/linux/ubuntu bionic/stable amd64 docker-ce amd64 5:19.03.8~3-0~ubuntu-bionic [22.9 MB]</code></p>
+<p>有意思的是在浏览器中下载deb文件速度很快，不清楚原因，地址如下</p>
+<p> <a target="_blank" rel="noopener" href="https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/">https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/</a> </p>
+<p>下载三个软件最新的deb，拖到ubuntu下安装，再apt或者<code>docker -v</code>检查没问题。</p>
+<h2 id="第一个命令"><a href="#第一个命令" class="headerlink" title="第一个命令"></a>第一个命令</h2><p><code>sudo docker run hello-world</code></p>
+<p>还是访问国外官方源，发现阿里云有“容器镜像服务”，创建一个容器仓库后会给一个镜像加速器地址，按说明配置即可。</p>
+<p>运行容器：docker run -it 镜像名 /bin/bash</p>
+<p>退出容器：exit 或者 Ctrl+P+Q暂时退出</p>
+<p>查看所有容器：docker ps -a </p>
+<p>查看运行的容器：docker ps</p>
+<p>重启容器：docker restart 容器ID</p>
+<p>重启容器后进入交互式：docker start -i 5c6ce895b979</p>
+<p>进入容器：docker attach 容器ID</p>
+<p>​        docker exec -it 容器ID /bin/bash </p>
+<p><code>docker run -p 80 --name web -i -t ubuntu /bin/bash</code></p>
+<p>启动一个docker容器后发现没有vim等编辑器，apt update还是国外源，和平时换源过程一样，不过修改sources.list文件要先删除原来的行，可以删掉重建sources.list文件，再用echo和&gt;&gt;重定向写到文件中，再update就好了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-backports main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-proposed main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-security main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-updates main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-backports main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-proposed main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-security main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; trusty-updates main multiverse restricted universe</span><br></pre></td></tr></table></figure>
+
+<p>的击杀敌方拉到回复</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/Ubuntu18.04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/Ubuntu18.04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90/" class="post-title-link" itemprop="url">Ubuntu18.04更换国内源</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 21:59:46" itemprop="dateModified" datetime="2020-04-28T21:59:46+08:00">2020-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Ubuntu本身的源使用的是国内的源，下载速度比较慢，不像CentOS一样yum安装的时候对镜像站点进项选择，<br>所以选择了更换成国内的源。<br>以下内容整合自网络</p>
+<h3 id="备份-etc-apt-sources-list文件"><a href="#备份-etc-apt-sources-list文件" class="headerlink" title="备份/etc/apt/sources.list文件"></a>备份/etc/apt/sources.list文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/apt/sources.list /etc/apt/sourses.list.backup1</span><br></pre></td></tr></table></figure>
+
+<h3 id="在root管理员下新建-etc-apt-sources-list文件并添加以下内容"><a href="#在root管理员下新建-etc-apt-sources-list文件并添加以下内容" class="headerlink" title="在root管理员下新建/etc/apt/sources.list文件并添加以下内容"></a>在root管理员下新建/etc/apt/sources.list文件并添加以下内容</h3><p>apt比apt-get多了一些命令，比如<code>sudo apt edit-sources</code>可以直接打开上述文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#阿里云源</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<h3 id="更改完成之后执行以下命令"><a href="#更改完成之后执行以下命令" class="headerlink" title="更改完成之后执行以下命令"></a>更改完成之后执行以下命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apt update</span></span><br><span class="line"><span class="comment"># apt upgrade12</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他的一些apt命令"><a href="#其他的一些apt命令" class="headerlink" title="其他的一些apt命令"></a>其他的一些apt命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update  更新源</span><br><span class="line">sudo apt-get install package 安装包</span><br><span class="line">sudo apt-get remove package 删除包</span><br><span class="line">sudo apt-cache search package 搜索软件包</span><br><span class="line">sudo apt-cache show package  获取包的相关信息，如说明、大小、版本等</span><br><span class="line">sudo apt-get install package --reinstall  重新安装包</span><br><span class="line">sudo apt-get -f install  修复安装</span><br><span class="line">sudo apt-get remove package --purge 删除包，包括配置文件等</span><br><span class="line">sudo apt-get build-dep package 安装相关的编译环境</span><br><span class="line">sudo apt-get upgrade 更新已安装的包</span><br><span class="line">sudo apt-get dist-upgrade 升级系统</span><br><span class="line">sudo apt-cache depends package 了解使用该包依赖那些包</span><br><span class="line">sudo apt-cache rdepends package 查看该包被哪些包依赖</span><br><span class="line">sudo apt-get <span class="built_in">source</span> package  下载该包的源代码</span><br><span class="line">sudo apt-get clean &amp;&amp; sudo apt-get autoclean 清理无用的包</span><br><span class="line">sudo apt-get check 检查是否有损坏的依赖12345678910111213141516</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他几个国内的源："><a href="#其他几个国内的源：" class="headerlink" title="其他几个国内的源："></a>其他几个国内的源：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#中科大源</span></span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment">#163源</span></span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse1234567891011</span><br><span class="line"></span><br><span class="line"><span class="comment">#清华源</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 14:30:23" itemprop="dateCreated datePublished" datetime="2021-03-24T14:30:23+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 21:59:54" itemprop="dateModified" datetime="2020-04-28T21:59:54+08:00">2020-04-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -144,107 +977,1412 @@
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/deployment.html">Deployment</a></p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/23/hello-world/" data-id="ckmlr8hvq0000d0vx4anjbyqp" data-title="Hello World" class="article-share-link">Share</a>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/23/my-first-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/23/my-first-blog/" class="post-title-link" itemprop="url">my first blog</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-23 14:43:10 / 修改时间：15:58:15" itemprop="dateCreated datePublished" datetime="2021-03-23T14:43:10+08:00">2021-03-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
+          <h1 id="大博客从0到1"><a href="#大博客从0到1" class="headerlink" title="大博客从0到1"></a>大博客从0到1</h1><h2 id="22"><a href="#22" class="headerlink" title="22"></a>22</h2><p>[toc]</p>
+
       
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/07/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E5%86%B3%E7%AD%96%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="孙云哲">
+      <meta itemprop="description" content="记录我的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.sun's notebook">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">数据挖掘大作业2记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-07 17:11:34" itemprop="dateCreated datePublished" datetime="2020-05-07T17:11:34+08:00">2020-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 22:46:28" itemprop="dateModified" datetime="2020-09-16T22:46:28+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据挖掘-决策树"><a href="#数据挖掘-决策树" class="headerlink" title="数据挖掘-决策树"></a>数据挖掘-决策树</h1><h2 id="任务一"><a href="#任务一" class="headerlink" title="任务一"></a>任务一</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><h4 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h4><p>摘自 <a target="_blank" rel="noopener" href="http://scikitlearn.com.cn/0.21.3/11/">scikitlearn中文文档</a></p>
+<p> <strong>决策树（DT）</strong>是一种用于分类和回归的无参监督学习方法。其目的是创建一种模型从数据特征中学习简单的决策规则来预测一个目标变量的值。 </p>
+<p>建立决策树主要有三种算法：</p>
+<ul>
+<li>ID3</li>
+<li>C4.5</li>
+<li>CART(Classification And Regression Tree)</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ID3_algorithm">ID3</a>（Iterative Dichotomiser 3）由 Ross Quinlan 在1986年提出。该算法创建一个多路树，找到每个节点（即以贪心的方式）分类特征，这将产生分类目标的最大信息增益。决策树发展到其最大尺寸，然后通常利用剪枝来提高树对未知数据的泛化能力。</p>
+<p>C4.5 是 ID3 的后继者，并且通过动态定义将连续属性值分割成一组离散间隔的离散属性（基于数字变量），消除了特征必须被明确分类的限制。C4.5 将训练的树（即，ID3算法的输出）转换成 if-then 规则的集合。然后评估每个规则的这些准确性，以确定应用它们的顺序。如果规则的准确性没有改变，则需要决策树的树枝来解决。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Predictive_analytics#Classification_and_regression_trees_.28CART.29">CART</a>（Classification and Regression Trees （分类和回归树））与 C4.5 非常相似，但它不同之处在于它支持数值目标变量（回归），并且不计算规则集。CART 使用在每个节点产生最大信息增益的特征和阈值来构造二叉树。</p>
+<p><strong>本次作业使用CART算法</strong></p>
+<p>决策树构建过程参考视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1T7411b7DG/">https://www.bilibili.com/video/BV1T7411b7DG/</a></p>
+<h4 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h4><p>它的基本思想就是将原始数据（dataset）进行分组，一部分做为训练集来训练模型，另一部分做为测试集来评价模型。交叉验证用于评估模型的预测性能，尤其是训练好的模型在新数据上的表现，可以在一定程度上减小过拟合。  还可以从有限的数据中获取尽可能多的有效信息。</p>
+<p>作业中采用<strong>10折交叉验证</strong>, 用DecisionTreeClassifier的参数剪枝，连续属性分裂值确定</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40541aa440c7">https://www.jianshu.com/p/40541aa440c7</a></p>
+<p>​          <a target="_blank" rel="noopener" href="https://www.jb51.net/article/181619.htm">https://www.jb51.net/article/181619.htm</a></p>
+<p>​         <a target="_blank" rel="noopener" href="https://blog.csdn.net/wyp8268526/article/details/90273682">https://blog.csdn.net/wyp8268526/article/details/90273682</a> </p>
+<p>​         <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42969619/article/details/99302615">https://blog.csdn.net/weixin_42969619/article/details/99302615</a></p>
+<p>​         <a target="_blank" rel="noopener" href="https://blog.csdn.net/y0929/article/details/82686177">https://blog.csdn.net/y0929/article/details/82686177</a></p>
+<p>​         <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1m741187N6/">https://www.bilibili.com/video/BV1m741187N6/</a></p>
+<h3 id="二、软件环境准备"><a href="#二、软件环境准备" class="headerlink" title="二、软件环境准备"></a>二、软件环境准备</h3><p>Anaconda3</p>
+<p>在Anaconda中安装sklearn包</p>
+<p><code>conda install -c conda-forge sklearn</code></p>
+<p>Graphviz(需配置环境变量)</p>
+<p>鸢尾花数据集(sklearn自带)</p>
+<p>数据集介绍</p>
+<table>
+<thead>
+<tr>
+<th>数据量</th>
+<th>150</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性数量</td>
+<td>4</td>
+</tr>
+<tr>
+<td>属性特征</td>
+<td>实数（连续属性）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>萼片长度、萼片宽度、花瓣长度、花瓣宽度</td>
+</tr>
+<tr>
+<td>类别数</td>
+<td>3</td>
+</tr>
+<tr>
+<td>类别</td>
+<td>Iris  Setosa、Iris  Versicolor、Iris Virginica</td>
+</tr>
+</tbody></table>
+<p>​        Iris 鸢尾花数据集是一个经典数据集，在统计学习和机器学习领域都经常被用作示例。数据集内包含 3 类共 150 条记录，每类各 50 个数据，每条记录都有 4 项特征：花萼长度、花萼宽度、花瓣长度、花瓣宽度，可以通过这4个特征预测鸢尾花卉属于（iris-setosa, iris-versicolour, iris-virginica）中的哪一品种。  </p>
+<h3 id="三、实验步骤"><a href="#三、实验步骤" class="headerlink" title="三、实验步骤"></a>三、实验步骤</h3><ol>
+<li><p>打开anconda命令行进入合适位置</p>
+</li>
+<li><p>输入jupyter notebook进入编辑环境，新建python3文件</p>
+</li>
+<li><p><strong>读入数据</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具库</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#读入数据集</span></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;iris.data&quot;</span>, sep=<span class="string">&quot;,&quot;</span>, header=<span class="literal">None</span>)</span><br><span class="line">df.columns = [<span class="string">&#x27;萼片长度&#x27;</span>, <span class="string">&#x27;萼片宽度&#x27;</span>, <span class="string">&#x27;花瓣长度&#x27;</span>, <span class="string">&#x27;花瓣宽度&#x27;</span>, <span class="string">&#x27;实际类别&#x27;</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right">萼片长度</th>
+<th align="right">萼片宽度</th>
+<th align="right">花瓣长度</th>
+<th align="right">花瓣宽度</th>
+<th align="right">实际类别</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td>…</td>
+</tr>
+<tr>
+<td align="right">145</td>
+<td align="right">6.7</td>
+<td align="right">3.0</td>
+<td align="right">5.2</td>
+<td align="right">2.3</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">146</td>
+<td align="right">6.3</td>
+<td align="right">2.5</td>
+<td align="right">5.0</td>
+<td align="right">1.9</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">147</td>
+<td align="right">6.5</td>
+<td align="right">3.0</td>
+<td align="right">5.2</td>
+<td align="right">2.0</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">148</td>
+<td align="right">6.2</td>
+<td align="right">3.4</td>
+<td align="right">5.4</td>
+<td align="right">2.3</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">149</td>
+<td align="right">5.9</td>
+<td align="right">3.0</td>
+<td align="right">5.1</td>
+<td align="right">1.8</td>
+<td>Iris-virginica</td>
+</tr>
+</tbody></table>
+<p>150 rows × 5 columns</p>
+<p>也可以用sklearn自带的iris数据集,可以看到更多相关信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具库</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="comment">#读入数据集</span></span><br><span class="line">iris = load_iris() <span class="comment"># 加载sklearn自带的数据集</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>预览数据集</strong></p>
+<p>iris是一个字典，包含了数据、标签、标签名、数据描述等信息。可以通过键来索引对应的值,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.data.shape</span><br></pre></td></tr></table></figure>
+
+<p>(150, 4)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.feature_names</span><br></pre></td></tr></table></figure>
+
+<p>[‘sepal length (cm)’,<br> ‘sepal width (cm)’,<br> ‘petal length (cm)’,<br> ‘petal width (cm)’]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.target</span><br></pre></td></tr></table></figure>
+
+<p>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,</p>
+<pre><code>   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+   0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+   2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+   2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.target_names</span><br></pre></td></tr></table></figure>
+
+<p>array([‘setosa’, ‘versicolor’, ‘virginica’], dtype=’&lt;U10’)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris.filename</span><br></pre></td></tr></table></figure>
+
+<p>‘C:\ProgramData\Anaconda3\lib\site-packages\sklearn\datasets\data\iris.csv’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 前50个样本的散点图</span></span><br><span class="line">plt.scatter(X[:<span class="number">50</span>, <span class="number">0</span>], X[:<span class="number">50</span>, <span class="number">1</span>],color=<span class="string">&#x27;red&#x27;</span>, marker=<span class="string">&#x27;o&#x27;</span>, label=<span class="string">&#x27;setosa&#x27;</span>)</span><br><span class="line"><span class="comment"># 中间50个样本的散点图</span></span><br><span class="line">plt.scatter(X[<span class="number">50</span>:<span class="number">100</span>, <span class="number">0</span>], X[<span class="number">50</span>:<span class="number">100</span>, <span class="number">1</span>],color=<span class="string">&#x27;blue&#x27;</span>, marker=<span class="string">&#x27;x&#x27;</span>, label=<span class="string">&#x27;versicolor&#x27;</span>)</span><br><span class="line"><span class="comment"># 后50个样本的散点图</span></span><br><span class="line">plt.scatter(X[<span class="number">100</span>:, <span class="number">0</span>], X[<span class="number">100</span>:, <span class="number">1</span>],color=<span class="string">&#x27;green&#x27;</span>, marker=<span class="string">&#x27;+&#x27;</span>, label=<span class="string">&#x27;Virginica&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;petal length&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;sepal length&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">2</span>) <span class="comment"># 说明放在左上角</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/08/Yu3X9g.png" alt="初始散点图"></p>
+</li>
+<li><p><strong>数据预处理</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据采用iris.data</span></span><br><span class="line"><span class="comment"># 打乱样本顺序</span></span><br><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line">df = shuffle(df)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 划分特征列和类别列</span></span><br><span class="line">X = df[[<span class="string">&#x27;萼片长度&#x27;</span>,<span class="string">&#x27;萼片宽度&#x27;</span>,<span class="string">&#x27;花瓣长度&#x27;</span>,<span class="string">&#x27;花瓣宽度&#x27;</span>]]</span><br><span class="line">y = df[<span class="string">&#x27;实际类别&#x27;</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>划分数据集</strong></p>
+<p>按照训练集 : 测试集 = 2:1的比例划分数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 按照训练集 : 测试集 = 2:1的比例划分数据集</span></span><br><span class="line">X_test = X[:<span class="number">50</span>]</span><br><span class="line">X_train = X[<span class="number">50</span>:]</span><br><span class="line">y_test = y[:<span class="number">50</span>]</span><br><span class="line">y_train = y[<span class="number">50</span>:]</span><br><span class="line">df_test = df[:<span class="number">50</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看划分的大小是否正确</span></span><br><span class="line">X_train.shape, y_train.shape</span><br></pre></td></tr></table></figure>
+
+<p>((100, 4), (100,))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_test.shape, y_test.shape</span><br></pre></td></tr></table></figure>
+
+<p>((50, 4), (50,))</p>
+</li>
+<li><p><strong>训练模型</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练模型 clf: classifier分类器</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line">clf = tree.DecisionTreeClassifier(max_depth = <span class="number">4</span>)</span><br><span class="line"><span class="comment"># 查看模型信息，包含各种剪枝参数，其中criterion=&#x27;gini&#x27;属性表示默认使用CART算法，</span></span><br><span class="line"><span class="comment"># splitter特征划分标准，默认值为‘best’。在特征的所有划分点中找出最优的划分点，</span></span><br><span class="line"><span class="comment"># 详细参数参考https://blog.csdn.net/y0929/article/details/82686177</span></span><br><span class="line">clf = clf.fit(X_train, y_train)</span><br><span class="line">clf</span><br></pre></td></tr></table></figure>
+
+<p>DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, <strong>criterion=’gini’,</strong></p>
+<pre><code>                   max_depth=4, max_features=None, max_leaf_nodes=None,
+                   min_impurity_decrease=0.0, min_impurity_split=None,
+                   min_samples_leaf=1, min_samples_split=2,
+                   min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                   random_state=None, **splitter=&#39;best&#39;**)
+</code></pre>
+</li>
+<li><p><strong>画出决策树</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画出决策树</span></span><br><span class="line">feature_names = [<span class="string">&#x27;sepal length (cm)&#x27;</span>,<span class="string">&#x27;sepal width (cm)&#x27;</span>,<span class="string">&#x27;petal length (cm)&#x27;</span>,<span class="string">&#x27;petal width (cm)&#x27;</span>]</span><br><span class="line">target_names = [<span class="string">&#x27;setosa&#x27;</span>, <span class="string">&#x27;versicolor&#x27;</span>, <span class="string">&#x27;virginica&#x27;</span>]</span><br><span class="line"><span class="keyword">import</span> pydotplus</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line">dot_data = tree.export_graphviz(clf,</span><br><span class="line">                               out_file = <span class="literal">None</span>,</span><br><span class="line">                               feature_names = feature_names,</span><br><span class="line">                               class_names = target_names,</span><br><span class="line">                               filled = <span class="literal">True</span>,</span><br><span class="line">                               rounded = <span class="literal">True</span></span><br><span class="line">                               )</span><br><span class="line">graph = pydotplus.graph_from_dot_data(dot_data)</span><br><span class="line">display(Image(graph.create_png()))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/08/YKVZsU.png" alt="x_train"></p>
+</li>
+<li><p><strong>在测试集检验决策树的分类效果(准确率)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf.score(X_test, y_test)</span><br></pre></td></tr></table></figure>
+
+<p>0.96</p>
+</li>
+<li><p><strong>交叉验证</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入数据采用iris.data文件，预处理、划分数据集同上</span></span><br><span class="line"><span class="comment"># 通过循环不断的改变参数，再利用交叉验证来评估不同参数模型的能力</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line">k_range = <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">7</span>)</span><br><span class="line">cv_scores = []</span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> k_range:</span><br><span class="line">    clf = tree.DecisionTreeClassifier(max_depth = n)</span><br><span class="line">    scores = cross_val_score(clf, X_train, y_train, cv=<span class="number">10</span>)</span><br><span class="line">    cv_scores.append(scores.mean())</span><br><span class="line">plt.plot(k_range,cv_scores)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;n&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Accuracy&#x27;</span>)  <span class="comment">#通过图像选择最好的参数</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/08/YMPPhV.png" alt="max_depth"></p>
+<p>由图像可以看出n=3时性能最好，确定max_depth = 3</p>
+<p>**注: **这里由于分组的随机性并不是确定值，要根据每次的图像决定参数</p>
+<p>重新训练模型&amp;画图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新训练模型&amp;画图</span></span><br><span class="line">clf = tree.DecisionTreeClassifier(max_depth = <span class="number">3</span>)</span><br><span class="line">clf = clf.fit(X_train, y_train) <span class="comment"># 训练模型</span></span><br><span class="line"></span><br><span class="line">dot_data = tree.export_graphviz(clf,</span><br><span class="line">                               out_file = <span class="literal">None</span>,</span><br><span class="line">                               feature_names = feature_names,</span><br><span class="line">                               class_names = target_names,</span><br><span class="line">                               filled = <span class="literal">True</span>,</span><br><span class="line">                               rounded = <span class="literal">True</span></span><br><span class="line">                               )</span><br><span class="line">graph = pydotplus.graph_from_dot_data(dot_data)</span><br><span class="line">display(Image(graph.create_png()))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/09/YMZ9r8.png" alt="最终决策树"></p>
+<p><strong>在测试集检验决策树的分类效果</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在测试集检验决策树的分类效果(准确率)</span></span><br><span class="line">clf.score(X_test,y_test)</span><br></pre></td></tr></table></figure>
+
+<p>0.98</p>
+<p>结果要好一些</p>
+</li>
+<li><p>保存测试集结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = clf.predict(X_test)</span><br><span class="line"><span class="comment"># 将测试结果转成dataframe</span></span><br><span class="line">result = pd.DataFrame(&#123;<span class="string">&#x27;分类结果&#x27;</span>:result&#125;)</span><br><span class="line">result</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th>分类结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">44</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">45</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">46</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">47</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">48</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td>Iris-setosa</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将测试结果与原始数据合并</span></span><br><span class="line">df_test.reset_index(drop=<span class="literal">True</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">df_test</span><br><span class="line">df_test[<span class="string">&#x27;分类结果&#x27;</span>] = result[<span class="string">&#x27;分类结果&#x27;</span>]</span><br><span class="line">df_test</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right">萼片长度</th>
+<th align="right">萼片宽度</th>
+<th align="right">花瓣长度</th>
+<th align="right">花瓣宽度</th>
+<th align="right">实际类别</th>
+<th align="right">分类结果</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">7.9</td>
+<td align="right">3.8</td>
+<td align="right">6.4</td>
+<td align="right">2.0</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">5.5</td>
+<td align="right">2.4</td>
+<td align="right">3.8</td>
+<td align="right">1.1</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">5.9</td>
+<td align="right">3.2</td>
+<td align="right">4.8</td>
+<td align="right">1.8</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">5.0</td>
+<td align="right">3.5</td>
+<td align="right">1.6</td>
+<td align="right">0.6</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="right">6.5</td>
+<td align="right">3.0</td>
+<td align="right">5.5</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="right">5.7</td>
+<td align="right">2.8</td>
+<td align="right">4.1</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td align="right">4.3</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="right">0.1</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="right">4.6</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="right">5.7</td>
+<td align="right">4.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="right">5.8</td>
+<td align="right">2.7</td>
+<td align="right">5.1</td>
+<td align="right">1.9</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td align="right">5.8</td>
+<td align="right">2.8</td>
+<td align="right">5.1</td>
+<td align="right">2.4</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td align="right">5.6</td>
+<td align="right">2.8</td>
+<td align="right">4.9</td>
+<td align="right">2.0</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td align="right">6.4</td>
+<td align="right">2.8</td>
+<td align="right">5.6</td>
+<td align="right">2.1</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td align="right">6.1</td>
+<td align="right">3.0</td>
+<td align="right">4.9</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td align="right">6.3</td>
+<td align="right">2.3</td>
+<td align="right">4.4</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td align="right">7.3</td>
+<td align="right">2.9</td>
+<td align="right">6.3</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td align="right">6.2</td>
+<td align="right">2.2</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td align="right">5.9</td>
+<td align="right">3.0</td>
+<td align="right">5.1</td>
+<td align="right">1.8</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td align="right">5.6</td>
+<td align="right">3.0</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td align="right">5.6</td>
+<td align="right">2.5</td>
+<td align="right">3.9</td>
+<td align="right">1.1</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td align="right">6.3</td>
+<td align="right">3.4</td>
+<td align="right">5.6</td>
+<td align="right">2.4</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td align="right">7.2</td>
+<td align="right">3.0</td>
+<td align="right">5.8</td>
+<td align="right">1.6</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td align="right">5.0</td>
+<td align="right">2.3</td>
+<td align="right">3.3</td>
+<td align="right">1.0</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.9</td>
+<td align="right">0.4</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td align="right">7.7</td>
+<td align="right">3.8</td>
+<td align="right">6.7</td>
+<td align="right">2.2</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td align="right">5.1</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td align="right">6.7</td>
+<td align="right">3.0</td>
+<td align="right">5.2</td>
+<td align="right">2.3</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td align="right">6.1</td>
+<td align="right">2.8</td>
+<td align="right">4.0</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td align="right">6.6</td>
+<td align="right">2.9</td>
+<td align="right">4.6</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td align="right">6.7</td>
+<td align="right">3.3</td>
+<td align="right">5.7</td>
+<td align="right">2.1</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td align="right">5.6</td>
+<td align="right">2.9</td>
+<td align="right">3.6</td>
+<td align="right">1.3</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td align="right">6.4</td>
+<td align="right">2.8</td>
+<td align="right">5.6</td>
+<td align="right">2.2</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td align="right">6.9</td>
+<td align="right">3.1</td>
+<td align="right">5.4</td>
+<td align="right">2.1</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td align="right">5.0</td>
+<td align="right">3.2</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td align="right">6.7</td>
+<td align="right">3.1</td>
+<td align="right">5.6</td>
+<td align="right">2.4</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td align="right">6.8</td>
+<td align="right">2.8</td>
+<td align="right">4.8</td>
+<td align="right">1.4</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td align="right">7.2</td>
+<td align="right">3.6</td>
+<td align="right">6.1</td>
+<td align="right">2.5</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td align="right">6.4</td>
+<td align="right">2.7</td>
+<td align="right">5.3</td>
+<td align="right">1.9</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td align="right">6.2</td>
+<td align="right">3.4</td>
+<td align="right">5.4</td>
+<td align="right">2.3</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td align="right">5.1</td>
+<td align="right">3.3</td>
+<td align="right">1.7</td>
+<td align="right">0.5</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">44</td>
+<td align="right">5.2</td>
+<td align="right">3.5</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">45</td>
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td align="right">46</td>
+<td align="right">7.0</td>
+<td align="right">3.2</td>
+<td align="right">4.7</td>
+<td align="right">1.4</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">47</td>
+<td align="right">5.8</td>
+<td align="right">2.7</td>
+<td align="right">5.1</td>
+<td align="right">1.9</td>
+<td align="right">Iris-virginica</td>
+<td>Iris-virginica</td>
+</tr>
+<tr>
+<td align="right">48</td>
+<td align="right">6.0</td>
+<td align="right">2.9</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="right">Iris-versicolor</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="right">Iris-setosa</td>
+<td>Iris-setosa</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存测试集结果</span></span><br><span class="line">df_test.to_csv(<span class="string">&#x27;df_test_result.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="四、实验总结"><a href="#四、实验总结" class="headerlink" title="四、实验总结"></a>四、实验总结</h3><p>​        任务一学习并使用了决策树分类，通过实际操作，我知道了利用sklearn包实现决策树的CART算法，还有交叉验证可以用来选择最好的剪枝参数，也可以对模型的结果进行验证评估。</p>
+<h2 id="任务二"><a href="#任务二" class="headerlink" title="任务二"></a>任务二</h2><h3 id="一、简介-1"><a href="#一、简介-1" class="headerlink" title="一、简介"></a>一、简介</h3><p><strong>k-means（k-均值）算法</strong></p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ustbbsy/article/details/80960652">https://blog.csdn.net/ustbbsy/article/details/80960652</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/github_39261590/article/details/76910689">https://blog.csdn.net/github_39261590/article/details/76910689</a></p>
+<p><strong>算法描述</strong></p>
+<p>　K-means算法是很典型的基于距离的聚类算法，采用距离 作为相似性的评价指标，即认为两个对象的距离越近，其相似度就越大。该算法认为簇是由距离靠近的对象组成的，因此把得到紧凑且独立的簇作为最终目标。</p>
+<p>　　k-means算法特点在于：同一聚类的簇内的对象相似度较高；而不同聚类的簇内的对象相似度较小。</p>
+<p><strong>算法优缺点</strong></p>
+<p>优点：</p>
+<p>1.算法快速、简单;</p>
+<p>2.对大数据集有较高的效率并且是可伸缩性的;</p>
+<p>3.时间复杂度近于线性，而且适合挖掘大规模数据集。K-Means聚类算法的时间复杂度是O(n×k×t) ,其中n代表数据集中对象的数量，t代表着算法迭代的次数，k代表着簇的数目</p>
+<p>缺点：</p>
+<p>1．在 K-means 算法中 K 是事先给定的，这个 K 值的选定是非常难以估计的。很多时候，事先并不知道给定的数据集应该分成多少个类别才最合适。</p>
+<p>2．在 K-means 算法中，首先需要根据初始聚类中心来确定一个初始划分，然后对初始划分进行优化。这个初始聚类中心的选择对聚类结果有较大的影响，一旦初始值选择的不好，可能无法得到有效的聚类结果，这也成为 K-means算法的一个主要问题。</p>
+<p>3．从 K-means 算法框架可以看出，该算法需要不断地进行样本分类调整，不断地计算调整后的新的聚类中心，因此当数据量非常大时，算法的时间开销是非常大的。所以需要对算法的时间复杂度进行分析、改进，提高算法应用范围。</p>
+<p><strong>k-means++算法（k-means算法初值选取优化方法）</strong></p>
+<p>k-means++算法选择初始seeds的基本思想就是：初始的聚类中心之间的相互距离要尽可能的远。</p>
+<p>算法步骤：</p>
+<p>（1）从输入的数据点集合中随机选择一个点作为第一个聚类中心</p>
+<p>（2）对于数据集中的每一个点x，计算它与最近聚类中心(指已选择的聚类中心)的距离D(x)</p>
+<p>（3）选择一个新的数据点作为新的聚类中心，选择的原则是：D(x)较大的点，被选取作为聚类中心的概率较大</p>
+<p>（4）重复2和3直到k个聚类中心被选出来</p>
+<p>（5）利用这k个初始的聚类中心来运行标准的k-means算法</p>
+<h3 id="二、软件环境准备-1"><a href="#二、软件环境准备-1" class="headerlink" title="二、软件环境准备"></a>二、软件环境准备</h3><p>Anaconda3</p>
+<p>sklearn包</p>
+<p>云图数据集cloud.data</p>
+<p>数据集介绍</p>
+<table>
+<thead>
+<tr>
+<th>数据量</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性数量</td>
+<td>10</td>
+</tr>
+<tr>
+<td>属性特征</td>
+<td>实数（连续属性）</td>
+</tr>
+</tbody></table>
+<p>谷歌机翻如下</p>
+<p>数据集信息：</p>
+<p>我们建议分析的数据集由1024个向量组成，每个向量包含10个参数。您可以将其视为1024 * 10矩阵。要产生这些矢量，请按以下步骤操作：</p>
+<p>1.我们从两张512 * 512的AVHRR图像开始（可见图像为1，红外图像为1） 2.每个图像都被划分为超像素16 * 16，每个超像素像素，我们计算出一组参数：</p>
+<p>（a）可见：均值，最大值，最小值，均值分布，对比度，熵，第二角动量</p>
+<p>（b）IR：均值，最大值，最小值</p>
+<p>我们选择用来形成向量的10个参数集是各种约束之间的折衷。实际上，我们仍在为数据向量选择参数。我发送给您的数据集尚未规范化。我们的分类方案要求对数据集进行规范化，但对于您的分类可能并非如此。为了标准化数据，我们计算整个数据集上每个参数的均值和标准差，然后计算每个向量的每个参数的均值和标准差：</p>
+<p>范数值=（非标准值-平均值）/ SD，其中</p>
+<p>平均值=数据集中该特定参数的平均值</p>
+<p>SD =标准偏差…..</p>
+<h3 id="三、实验步骤-1"><a href="#三、实验步骤-1" class="headerlink" title="三、实验步骤"></a>三、实验步骤</h3><p><strong>具体运行结果见附件Cloud.ipynb</strong></p>
+<p><strong>1. 作业只需关注“CLOUD COVER DB #1”</strong>，所以对cloud.data进行处理删掉前面的说明和第二部分数据。</p>
+<p><strong>2. 数据以空格为分隔，要先处理成csv格式</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 逐行读入数据，将空格转成逗号，保存为csv格式</span></span><br><span class="line">ls = <span class="built_in">open</span>(<span class="string">&quot;cloud.data&quot;</span>).readlines()</span><br><span class="line">newTxt = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> ls:</span><br><span class="line">    newTxt = newTxt + <span class="string">&quot;,&quot;</span>.join(line.split()) + <span class="string">&quot;\n&quot;</span></span><br><span class="line">fo = <span class="built_in">open</span>(<span class="string">&quot;cloud.csv&quot;</span>, <span class="string">&quot;x&quot;</span>)</span><br><span class="line">fo.write(newTxt)</span><br><span class="line">fo.close()</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.</strong>  <strong>读入数据</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具库</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#读入数据集</span></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;cloud.csv&quot;</span>, sep=<span class="string">&quot;,&quot;</span>, header=<span class="literal">None</span>)</span><br><span class="line">df.columns = [<span class="string">&#x27;mean&#x27;</span>,<span class="string">&#x27;max&#x27;</span>,<span class="string">&#x27;min&#x27;</span>,<span class="string">&#x27;mean distibution’,’contrast&#x27;</span>,<span class="string">&#x27;entropy&#x27;</span>,<span class="string">&#x27;second angular momentum&#x27;</span>,<span class="string">&#x27;mean’&#x27;</span>,<span class="string">&#x27;max’&#x27;</span>,<span class="string">&#x27;min1’]</span></span><br><span class="line"><span class="string">df.head()</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>mean</strong></th>
+<th><strong>max</strong></th>
+<th><strong>min</strong></th>
+<th><strong>mean distibution</strong></th>
+<th><strong>contrast</strong></th>
+<th><strong>entropy</strong></th>
+<th><strong>second angular momentum</strong></th>
+<th><strong>mean</strong></th>
+<th><strong>max</strong></th>
+<th><strong>min</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>3.0</td>
+<td>140.0</td>
+<td>43.5000</td>
+<td>0.0833</td>
+<td>862.8417</td>
+<td>0.0254</td>
+<td>3.8890</td>
+<td>163.0</td>
+<td>240.0</td>
+<td>213.3555</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3.0</td>
+<td>135.0</td>
+<td>41.9063</td>
+<td>0.0790</td>
+<td>690.3291</td>
+<td>0.0259</td>
+<td>3.8340</td>
+<td>167.0</td>
+<td>239.0</td>
+<td>213.7188</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2.0</td>
+<td>126.0</td>
+<td>21.0586</td>
+<td>0.0406</td>
+<td>308.3583</td>
+<td>0.0684</td>
+<td>3.1702</td>
+<td>174.0</td>
+<td>240.0</td>
+<td>227.5859</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4.0</td>
+<td>197.0</td>
+<td>77.4805</td>
+<td>0.0890</td>
+<td>874.4709</td>
+<td>0.0243</td>
+<td>3.9442</td>
+<td>155.0</td>
+<td>239.0</td>
+<td>197.2773</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7.0</td>
+<td>193.0</td>
+<td>88.8398</td>
+<td>0.0884</td>
+<td>810.1126</td>
+<td>0.0223</td>
+<td>3.9318</td>
+<td>150.0</td>
+<td>236.0</td>
+<td>186.0195</td>
+</tr>
+</tbody></table>
+<p><strong>4.</strong>  <strong>k-means聚类</strong></p>
+<p>这里我们以contrast和mean.1两个维度进行聚类：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 设置要聚类的字段</span></span><br><span class="line">X = np.array(df[[<span class="string">&#x27;contrast&#x27;</span>,<span class="string">&#x27;mean1&#x27;</span>]])</span><br><span class="line"><span class="comment"># 设置簇数为3,默认k-means++算法</span></span><br><span class="line">clf = KMeans(n_clusters=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 将数据代入到聚类模型中</span></span><br><span class="line">clf = clf.fit(X)</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.</strong>  <strong>查看聚类之后的结果：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf.cluster_centers_</span><br></pre></td></tr></table></figure>
+
+<p>array([[ 791.98735711, 166.04901961],</p>
+<p>​    [ 178.66887036, 204.85741088],</p>
+<p>​    [1607.05208313, 163.96385542]])</p>
+<p><strong>6.</strong>  <strong>根据肘方法确定簇数k。</strong></p>
+<p><strong>肘部法求最佳K值</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 肘部法求最佳K值</span></span><br><span class="line">K = <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">mean_distortions = []</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> K:</span><br><span class="line">kmeans = KMeans(n_clusters=k)</span><br><span class="line">kmeans.fit(X)</span><br><span class="line">mean_distortions.append(</span><br><span class="line"><span class="built_in">sum</span>(</span><br><span class="line">np.<span class="built_in">min</span>(</span><br><span class="line">                cdist(X, kmeans.cluster_centers_, metric=<span class="string">&#x27;euclidean&#x27;</span>), axis=<span class="number">1</span>))</span><br><span class="line">    / X.shape[<span class="number">0</span>])</span><br><span class="line">plt.plot(K, mean_distortions, <span class="string">&#x27;bx-&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;k&#x27;</span>)</span><br><span class="line">font = FontProperties(fname=<span class="string">r&#x27;c:\windows\fonts\msyh.ttc&#x27;</span>, size=<span class="number">20</span>)</span><br><span class="line">plt.ylabel(<span class="string">u&#x27;平均畸变程度&#x27;</span>, fontproperties=font)</span><br><span class="line">plt.title(<span class="string">u&#x27;用肘部法确定最佳的K值&#x27;</span>, fontproperties=font)</span><br></pre></td></tr></table></figure>
+
+<p>Text(0.5, 1.0, ‘用肘部法确定最佳的K值’)</p>
+<p><img src="https://s1.ax1x.com/2020/09/08/wlJc0H.png" alt="wlJc0H.png"></p>
+<p><strong>7.</strong>  <strong>比较k-means算法和k-means++算法的误差平方和E</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算两个向量的欧式距离的平方，并返回</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distEclud</span>(<span class="params">vecA, vecB</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(np.power(vecA - vecB, <span class="number">2</span>))</span><br><span class="line"><span class="comment"># K-means算</span></span><br><span class="line">sse = <span class="number">0</span></span><br><span class="line">kmodel = KMeans(n_clusters=<span class="number">2</span>, init=<span class="string">&#x27;random&#x27;</span>)</span><br><span class="line">kmodel.fit(X)</span><br><span class="line"><span class="comment"># 簇中心</span></span><br><span class="line">cluster_ceter_list = kmodel.cluster_centers_</span><br><span class="line"><span class="comment"># 个样本属于的簇序号列表</span></span><br><span class="line">cluster_list = kmodel.labels_.tolist()</span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(X)):</span><br><span class="line">cluster_num = cluster_list[index]</span><br><span class="line">sse += distEclud(X[index, :], cluster_ceter_list[cluster_num])</span><br><span class="line">sse</span><br></pre></td></tr></table></figure>
+
+<p>结果: 81199692.74246562</p>
+<p>把init=’random’去掉使用默认的K-means++算法，重新训练，<strong>结果一致</strong>，不知原因。</p>
+<p>也可以用自带的kmodel.inertia_属性，结果一致。</p>
+<h3 id="四、实验总结-1"><a href="#四、实验总结-1" class="headerlink" title="四、实验总结"></a>四、实验总结</h3><p>任务二学习并使用了K-means算法，通过实际操作，我知道了利用sklearn包实现K-means算法进行聚类，以及它与K-means++算法的区别。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">孙云哲</p>
+  <div class="site-description" itemprop="description">记录我的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">孙云哲</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-</article>
-
-
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li></ul>
-    </div>
-  </div>
+<script src="/js/schemes/muse.js"></script>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/03/23/my-first-blog/">my first blog</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/23/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+<script src="/js/next-boot.js"></script>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
 </body>
 </html>
